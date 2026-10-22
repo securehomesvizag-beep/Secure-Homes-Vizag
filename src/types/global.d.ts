@@ -68,6 +68,21 @@ declare module 'next' {
     }
   }
 
+  export interface NextConfig {
+    images?: {
+      remotePatterns?: Array<{
+        protocol?: 'http' | 'https';
+        hostname: string;
+        port?: string;
+        pathname?: string;
+      }>;
+      domains?: string[];
+      unoptimized?: boolean;
+      [key: string]: unknown;
+    };
+    [key: string]: unknown;
+  }
+
   export type NextPage<P = Record<string, unknown>, IP = P> = import('react').ComponentType<P> & {
     getInitialProps?(context: unknown): IP | Promise<IP>;
   };
