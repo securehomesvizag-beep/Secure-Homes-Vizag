@@ -6,6 +6,12 @@ export async function middleware(request: NextRequest) {
 
   // Only protect /admin routes, excluding /admin/login
   if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
+    // 1. Direct admin session cookie check for immediate authenticated access
+    const adminSession = request.cookies.get('admin_session')?.value;
+    if (adminSession === 'authenticated') {
+      return NextResponse.next();
+    }
+
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
