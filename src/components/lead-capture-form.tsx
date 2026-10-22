@@ -81,18 +81,16 @@ export function LeadCaptureForm({
   };
 
   const whatsappContinueUrl = `https://wa.me/918019928236?text=${encodeURIComponent(
-    `Hi Rajesh, I just submitted an enquiry for ${interest.toUpperCase()}${
-      listingTitle ? ` (${listingTitle})` : ''
+    `Hi Rajesh, I just submitted an enquiry for ${interest.toUpperCase()}${listingTitle ? ` (${listingTitle})` : ''
     }. Name: ${name}, Phone: ${phone}. Please share details.`
   )}`;
 
   if (submitted) {
     return (
-      <div className={`p-6 border rounded-[4px] ${
-        inDarkSection
+      <div className={`p-6 border rounded-[4px] ${inDarkSection
           ? 'bg-[#1e2f52] border-[#2f4370] text-[#FAF7F2]'
           : 'bg-[var(--surface)] border-[var(--line)] text-[var(--ink)]'
-      }`}>
+        }`}>
         <p className="font-heading text-xl font-semibold mb-2">
           Thank you. Your enquiry is received.
         </p>
@@ -135,9 +133,8 @@ export function LeadCaptureForm({
       <div>
         <label
           htmlFor="enquiry-name"
-          className={`block text-sm font-semibold mb-1.5 ${
-            inDarkSection ? 'text-[#FAF7F2]' : 'text-[var(--ink)]'
-          }`}
+          className={`block text-sm font-semibold mb-1.5 ${inDarkSection ? 'text-[#FAF7F2]' : 'text-[var(--ink)]'
+            }`}
         >
           Your Name <span className="text-[var(--brand)]">*</span>
         </label>
@@ -147,7 +144,7 @@ export function LeadCaptureForm({
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Rajesh Varma"
+          placeholder="Rajesh Ponnada"
           className="w-full px-3.5 py-2.5 text-base bg-[var(--surface)] border border-[var(--line)] rounded-[4px] text-[var(--ink)] placeholder:text-[#888b94] min-h-[44px]"
         />
       </div>
@@ -155,9 +152,8 @@ export function LeadCaptureForm({
       <div>
         <label
           htmlFor="enquiry-phone"
-          className={`block text-sm font-semibold mb-1.5 ${
-            inDarkSection ? 'text-[#FAF7F2]' : 'text-[var(--ink)]'
-          }`}
+          className={`block text-sm font-semibold mb-1.5 ${inDarkSection ? 'text-[#FAF7F2]' : 'text-[var(--ink)]'
+            }`}
         >
           Phone Number (10 digits) <span className="text-[var(--brand)]">*</span>
         </label>
@@ -181,9 +177,8 @@ export function LeadCaptureForm({
       <div>
         <label
           htmlFor="enquiry-interest"
-          className={`block text-sm font-semibold mb-1.5 ${
-            inDarkSection ? 'text-[#FAF7F2]' : 'text-[var(--ink)]'
-          }`}
+          className={`block text-sm font-semibold mb-1.5 ${inDarkSection ? 'text-[#FAF7F2]' : 'text-[var(--ink)]'
+            }`}
         >
           Property Interest
         </label>
@@ -203,9 +198,8 @@ export function LeadCaptureForm({
       <div>
         <label
           htmlFor="enquiry-message"
-          className={`block text-sm font-semibold mb-1.5 ${
-            inDarkSection ? 'text-[#FAF7F2]' : 'text-[var(--ink)]'
-          }`}
+          className={`block text-sm font-semibold mb-1.5 ${inDarkSection ? 'text-[#FAF7F2]' : 'text-[var(--ink)]'
+            }`}
         >
           Message (Optional)
         </label>
@@ -228,9 +222,8 @@ export function LeadCaptureForm({
             onChange={(e) => setConsent(e.target.checked)}
             className="mt-1 h-4 w-4 rounded-[4px] border-[var(--line)] text-[var(--brand)] accent-[var(--brand)]"
           />
-          <span className={`text-xs leading-relaxed ${
-            inDarkSection ? 'text-[#E7E0D5]' : 'text-[var(--text)]'
-          }`}>
+          <span className={`text-xs leading-relaxed ${inDarkSection ? 'text-[#E7E0D5]' : 'text-[var(--text)]'
+            }`}>
             I authorize Secure Home Vizag to contact me via Call or WhatsApp regarding this enquiry. See our{' '}
             <Link href="/privacy" className="underline hover:text-[var(--brand)]">
               Privacy Policy
