@@ -22,7 +22,9 @@ export async function PATCH(
         .select()
         .single();
 
-      if (!error && data) {
+      if (error) {
+        console.error(`Failed to update listing [${id}] in Supabase:`, error);
+      } else if (data) {
         try {
           revalidatePath('/', 'layout');
           revalidatePath('/');
@@ -80,7 +82,10 @@ export async function DELETE(
 
     const adminClient = createAdminClient();
     if (adminClient) {
-      await adminClient.from('listings').delete().eq('id', id);
+      const { error } = await adminClient.from('listings').delete().eq('id', id);
+      if (error) {
+        console.error(`Failed to delete listing [${id}] in Supabase:`, error);
+      }
     }
 
     const store = (globalThis as any).__listings_store;

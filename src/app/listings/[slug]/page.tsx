@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { getListingBySlug, getListings } from '@/lib/data';
+import { getListingBySlug, getSettings } from '@/lib/data';
 import { PROPERTY_TYPE_LABELS, LISTING_STATUS_LABELS } from '@/lib/types';
 import { LeadActionButtons } from '@/components/lead-action-buttons';
 import { LeadCaptureForm } from '@/components/lead-capture-form';
@@ -13,6 +13,9 @@ import { ArrowLeft } from '@phosphor-icons/react/dist/ssr';
 interface ListingPageProps {
   params: Promise<{ slug: string }>;
 }
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function generateMetadata({ params }: ListingPageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -35,14 +38,12 @@ export async function generateMetadata({ params }: ListingPageProps): Promise<Me
   };
 }
 
-export async function generateStaticParams() {
-  const listings = await getListings();
-  return listings.map((l) => ({ slug: l.slug }));
-}
-
 export default async function ListingDetailPage({ params }: ListingPageProps) {
   const { slug } = await params;
-  const listing = await getListingBySlug(slug);
+  const [listing, settings] = await Promise.all([
+    getListingBySlug(slug),
+    getSettings(),
+  ]);
 
   if (!listing) {
     notFound();
@@ -214,6 +215,8 @@ export default async function ListingDetailPage({ params }: ListingPageProps) {
               <LeadActionButtons
                 listingId={listing.id}
                 listingTitle={listing.title}
+                phoneNumber={settings.phone}
+                whatsappNumber={settings.whatsapp_number}
                 variant="row"
                 className="w-full flex-col items-stretch"
               />

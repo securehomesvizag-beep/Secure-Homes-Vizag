@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { revalidatePath } from 'next/cache';
 
 export async function PATCH(
   req: NextRequest,
@@ -11,7 +12,10 @@ export async function PATCH(
 
     const adminClient = createAdminClient();
     if (adminClient) {
-      await adminClient.from('testimonials').update(body).eq('id', id);
+      const { error } = await adminClient.from('testimonials').update(body).eq('id', id);
+      if (error) {
+        console.error(`Failed to update testimonial [${id}] in Supabase:`, error);
+      }
     }
 
     const store = (globalThis as any).__testimonials_store;
@@ -23,6 +27,14 @@ export async function PATCH(
           ...body,
         };
       }
+    }
+
+    try {
+      revalidatePath('/', 'layout');
+      revalidatePath('/');
+      revalidatePath('/about');
+    } catch {
+      // Safe fallback
     }
 
     return NextResponse.json({ success: true });
@@ -41,12 +53,23 @@ export async function DELETE(
 
     const adminClient = createAdminClient();
     if (adminClient) {
-      await adminClient.from('testimonials').delete().eq('id', id);
+      const { error } = await adminClient.from('testimonials').delete().eq('id', id);
+      if (error) {
+        console.error(`Failed to delete testimonial [${id}] in Supabase:`, error);
+      }
     }
 
     const store = (globalThis as any).__testimonials_store;
     if (store && Array.isArray(store)) {
       (globalThis as any).__testimonials_store = store.filter((t: any) => t.id !== id);
+    }
+
+    try {
+      revalidatePath('/', 'layout');
+      revalidatePath('/');
+      revalidatePath('/about');
+    } catch {
+      // Safe fallback
     }
 
     return NextResponse.json({ success: true });

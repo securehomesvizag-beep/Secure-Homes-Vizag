@@ -9,9 +9,15 @@ export async function POST(req: NextRequest) {
     const adminClient = createAdminClient();
     if (adminClient) {
       for (const [key, value] of Object.entries(body)) {
-        await adminClient
+        const { error } = await adminClient
           .from('settings')
-          .upsert({ key, value: String(value), updated_at: new Date().toISOString() });
+          .upsert(
+            { key, value: String(value), updated_at: new Date().toISOString() },
+            { onConflict: 'key' }
+          );
+        if (error) {
+          console.error(`Failed to update setting [${key}]:`, error);
+        }
       }
     }
 

@@ -22,7 +22,9 @@ export async function POST(req: NextRequest) {
     const adminClient = createAdminClient();
     if (adminClient) {
       const { data, error } = await adminClient.from('testimonials').insert([newTestimonial]).select().single();
-      if (!error && data) {
+      if (error) {
+        console.error('Failed to insert testimonial in Supabase:', error);
+      } else if (data) {
         result = data as Testimonial;
       }
     }

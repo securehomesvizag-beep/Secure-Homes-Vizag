@@ -35,7 +35,9 @@ export async function POST(req: NextRequest) {
     const adminClient = createAdminClient();
     if (adminClient) {
       const { data, error } = await adminClient.from('listings').insert([newListing]).select().single();
-      if (!error && data) {
+      if (error) {
+        console.error('Failed to insert listing in Supabase:', error);
+      } else if (data) {
         resultListing = data as Listing;
       }
     }
