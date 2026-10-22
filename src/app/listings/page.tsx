@@ -14,6 +14,9 @@ export const metadata: Metadata = {
 
 const TAB_TYPES: PropertyType[] = ['plots', 'flats', 'villas', 'commercial'];
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function ListingsPage({
   searchParams,
 }: {

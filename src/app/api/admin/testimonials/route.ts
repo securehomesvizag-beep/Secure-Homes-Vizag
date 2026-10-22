@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { Testimonial } from '@/lib/types';
+import { revalidatePath } from 'next/cache';
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,20 +17,30 @@ export async function POST(req: NextRequest) {
       created_at: new Date().toISOString(),
     };
 
+    let result: Testimonial = newTestimonial;
+
     const adminClient = createAdminClient();
     if (adminClient) {
       const { data, error } = await adminClient.from('testimonials').insert([newTestimonial]).select().single();
       if (!error && data) {
-        return NextResponse.json({ success: true, testimonial: data });
+        result = data as Testimonial;
       }
     }
 
     if (!(globalThis as any).__testimonials_store) {
       (globalThis as any).__testimonials_store = [];
     }
-    (globalThis as any).__testimonials_store.unshift(newTestimonial);
+    (globalThis as any).__testimonials_store.unshift(result);
 
-    return NextResponse.json({ success: true, testimonial: newTestimonial });
+    try {
+      revalidatePath('/', 'layout');
+      revalidatePath('/');
+      revalidatePath('/about');
+    } catch {
+      // Safe fallback
+    }
+
+    return NextResponse.json({ success: true, testimonial: result });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : 'Error adding testimonial';
     return NextResponse.json({ error: msg }, { status: 500 });

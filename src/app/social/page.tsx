@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     'Follow Secure Home Vizag on Instagram and YouTube for walk-through videos, site updates, and local real estate news in Visakhapatnam.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function SocialPage() {
   const settings = await getSettings();
 

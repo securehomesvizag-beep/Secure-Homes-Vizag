@@ -2,6 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { LeadActionButtons } from '@/components/lead-action-buttons';
+import { getSettings } from '@/lib/data';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: 'About Rajesh Ponnada | Secure Home Vizag',
@@ -9,7 +13,8 @@ export const metadata: Metadata = {
     'Meet Rajesh Ponnada, founder of Secure Home Vizag with 10+ years of transparent real estate advisory across Visakhapatnam.',
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const settings = await getSettings();
   const steps = [
     {
       step: '01',
@@ -84,7 +89,11 @@ export default function AboutPage() {
           <p className="text-base text-[var(--text)] leading-relaxed">
             Real estate decisions are substantial life commitments. Whether you are buying your first home plot, building a villa near the coast, or investing from overseas as an NRI, you receive direct communication, written quotes, and verified documentation.
           </p>
-          <LeadActionButtons variant="hero" />
+          <LeadActionButtons
+            variant="hero"
+            phoneNumber={settings.phone}
+            whatsappNumber={settings.whatsapp_number}
+          />
         </div>
       </section>
 

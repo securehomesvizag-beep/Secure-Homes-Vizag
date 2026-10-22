@@ -156,6 +156,16 @@ declare module 'next/font/google' {
   export function Roboto(options?: FontOptions): { className: string; variable: string; style: { fontFamily: string } };
 }
 
+declare module 'next/cache' {
+  export function revalidatePath(path: string, type?: 'page' | 'layout'): void;
+  export function revalidateTag(tag: string): void;
+  export function unstable_cache<T extends (...args: any[]) => any>(
+    fn: T,
+    keyParts?: string[],
+    options?: { revalidate?: number | false; tags?: string[] }
+  ): T;
+}
+
 // Fallback ambient module definitions to resolve TypeScript IDE errors while node_modules syncs
 declare module 'next/navigation' {
   export function useRouter(): {

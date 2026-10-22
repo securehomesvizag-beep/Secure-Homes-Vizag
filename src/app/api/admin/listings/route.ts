@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { Listing } from '@/lib/types';
+import { revalidatePath } from 'next/cache';
 
 export async function POST(req: NextRequest) {
   try {
@@ -29,11 +30,13 @@ export async function POST(req: NextRequest) {
       updated_at: new Date().toISOString(),
     };
 
+    let resultListing: Listing = newListing;
+
     const adminClient = createAdminClient();
     if (adminClient) {
       const { data, error } = await adminClient.from('listings').insert([newListing]).select().single();
       if (!error && data) {
-        return NextResponse.json({ success: true, listing: data });
+        resultListing = data as Listing;
       }
     }
 
@@ -41,9 +44,19 @@ export async function POST(req: NextRequest) {
     if (!(globalThis as any).__listings_store) {
       (globalThis as any).__listings_store = [];
     }
-    (globalThis as any).__listings_store.unshift(newListing);
+    (globalThis as any).__listings_store.unshift(resultListing);
 
-    return NextResponse.json({ success: true, listing: newListing });
+    // Revalidate public listing pages immediately
+    try {
+      revalidatePath('/', 'layout');
+      revalidatePath('/');
+      revalidatePath('/listings');
+      revalidatePath(`/listings/${resultListing.slug}`);
+    } catch {
+      // Safe fallback
+    }
+
+    return NextResponse.json({ success: true, listing: resultListing });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : 'Error creating listing';
     return NextResponse.json({ error: msg }, { status: 500 });

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     'Contact Rajesh Ponnada at Secure Home Vizag directly via Phone, WhatsApp, or online enquiry for verified property options in Visakhapatnam.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function ContactPage() {
   const settings = await getSettings();
 

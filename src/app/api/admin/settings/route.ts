@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { revalidatePath } from 'next/cache';
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,6 +21,18 @@ export async function POST(req: NextRequest) {
         ...currentSettings,
         ...body,
       };
+    }
+
+    // Immediately revalidate all public pages displaying brand settings
+    try {
+      revalidatePath('/', 'layout');
+      revalidatePath('/');
+      revalidatePath('/about');
+      revalidatePath('/contact');
+      revalidatePath('/social');
+      revalidatePath('/listings');
+    } catch {
+      // Safe fallback
     }
 
     return NextResponse.json({ success: true });

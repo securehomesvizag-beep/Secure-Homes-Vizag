@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { revalidatePath } from 'next/cache';
 
 export async function PATCH(
   req: NextRequest,
@@ -22,6 +23,14 @@ export async function PATCH(
         .single();
 
       if (!error && data) {
+        try {
+          revalidatePath('/', 'layout');
+          revalidatePath('/');
+          revalidatePath('/listings');
+          if (data.slug) revalidatePath(`/listings/${data.slug}`);
+        } catch {
+          // Safe fallback
+        }
         return NextResponse.json({ success: true, listing: data });
       }
     }
@@ -35,8 +44,24 @@ export async function PATCH(
           ...body,
           updated_at: new Date().toISOString(),
         };
+        try {
+          revalidatePath('/', 'layout');
+          revalidatePath('/');
+          revalidatePath('/listings');
+          if (listingsStore[index].slug) revalidatePath(`/listings/${listingsStore[index].slug}`);
+        } catch {
+          // Safe fallback
+        }
         return NextResponse.json({ success: true, listing: listingsStore[index] });
       }
+    }
+
+    try {
+      revalidatePath('/', 'layout');
+      revalidatePath('/');
+      revalidatePath('/listings');
+    } catch {
+      // Safe fallback
     }
 
     return NextResponse.json({ success: true });
@@ -61,6 +86,14 @@ export async function DELETE(
     const store = (globalThis as any).__listings_store;
     if (store && Array.isArray(store)) {
       (globalThis as any).__listings_store = store.filter((l: any) => l.id !== id);
+    }
+
+    try {
+      revalidatePath('/', 'layout');
+      revalidatePath('/');
+      revalidatePath('/listings');
+    } catch {
+      // Safe fallback
     }
 
     return NextResponse.json({ success: true });

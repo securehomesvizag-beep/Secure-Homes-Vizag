@@ -2,8 +2,16 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, WhatsappLogo } from '@phosphor-icons/react/dist/ssr';
+import { SiteSettings } from '@/lib/types';
 
-export function Footer() {
+interface FooterProps {
+  settings?: SiteSettings;
+}
+
+export function Footer({ settings }: FooterProps) {
+  const phone = settings?.phone || '8019928236';
+  const whatsappLink = settings?.whatsapp_link || `https://wa.me/91${settings?.whatsapp_number || '8019928236'}`;
+  const address = settings?.office_address || 'Visakhapatnam, Andhra Pradesh';
   return (
     <footer className="bg-[var(--ink)] text-[#FAF7F2] border-t border-[var(--line)] pt-16 pb-24 md:pb-16">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
@@ -96,19 +104,19 @@ export function Footer() {
               Direct Contact
             </p>
             <p className="text-sm text-[#E7E0D5]">
-              Visakhapatnam, Andhra Pradesh
+              {address}
             </p>
             <div className="pt-1 space-y-2">
               <a
-                href="tel:+918019928236"
+                href={`tel:+91${phone}`}
                 className="inline-flex items-center gap-2 text-sm text-[#FAF7F2] hover:text-[var(--brand)]"
               >
                 <Phone size={20} weight="regular" />
-                <span>+91 8019928236</span>
+                <span>+91 {phone}</span>
               </a>
               <br />
               <a
-                href="https://wa.me/918019928236"
+                href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-[#FAF7F2] hover:text-[var(--brand)]"

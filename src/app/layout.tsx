@@ -64,6 +64,9 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function RootLayout({
   children,
 }: {
@@ -85,13 +88,13 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--text)] antialiased">
-        <Navbar />
+        <Navbar settings={settings} />
         <main className="flex-1">
           {children}
         </main>
-        <Footer />
-        <MobileBottomBar />
-        <DesktopWhatsAppButton />
+        <Footer settings={settings} />
+        <MobileBottomBar settings={settings} />
+        <DesktopWhatsAppButton settings={settings} />
       </body>
     </html>
   );

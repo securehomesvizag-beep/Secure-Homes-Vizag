@@ -2,8 +2,15 @@
 
 import React from 'react';
 import { WhatsappLogo } from '@phosphor-icons/react';
+import { SiteSettings } from '@/lib/types';
 
-export function DesktopWhatsAppButton() {
+interface DesktopWhatsAppButtonProps {
+  settings?: SiteSettings;
+}
+
+export function DesktopWhatsAppButton({ settings }: DesktopWhatsAppButtonProps) {
+  const whatsappLink = settings?.whatsapp_link || `https://wa.me/91${settings?.whatsapp_number || '8019928236'}`;
+
   const handleClick = async (e: React.MouseEvent) => {
     e.preventDefault();
     try {
@@ -19,7 +26,8 @@ export function DesktopWhatsAppButton() {
       // Continue even if logging fails
     }
 
-    window.open('https://wa.me/918019928236?text=Hi%2C%20I%20am%20interested%20in%20property%20in%20Visakhapatnam.%20Please%20share%20details.', '_blank', 'noopener,noreferrer');
+    const defaultUrl = `${whatsappLink}?text=${encodeURIComponent('Hi, I am interested in property in Visakhapatnam. Please share details.')}`;
+    window.open(defaultUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (

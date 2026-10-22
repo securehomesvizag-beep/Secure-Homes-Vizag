@@ -6,8 +6,13 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { List, X } from '@phosphor-icons/react';
 import { LeadActionButtons } from './lead-action-buttons';
+import { SiteSettings } from '@/lib/types';
 
-export function Navbar() {
+interface NavbarProps {
+  settings?: SiteSettings;
+}
+
+export function Navbar({ settings }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -56,7 +61,11 @@ export function Navbar() {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-3">
-          <LeadActionButtons variant="navbar" />
+          <LeadActionButtons
+            variant="navbar"
+            phoneNumber={settings?.phone}
+            whatsappNumber={settings?.whatsapp_number}
+          />
         </div>
 
         {/* Mobile Menu Toggle Button */}
@@ -94,7 +103,12 @@ export function Navbar() {
             })}
           </nav>
           <div className="pt-2 border-t border-[var(--line)]">
-            <LeadActionButtons variant="navbar" className="w-full justify-between" />
+            <LeadActionButtons
+              variant="navbar"
+              phoneNumber={settings?.phone}
+              whatsappNumber={settings?.whatsapp_number}
+              className="w-full justify-between"
+            />
           </div>
         </div>
       )}

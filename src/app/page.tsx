@@ -7,6 +7,9 @@ import { LeadActionButtons } from '@/components/lead-action-buttons';
 import { ListingRowCard } from '@/components/listing-row-card';
 import { LeadCaptureForm } from '@/components/lead-capture-form';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function HomePage() {
   const featuredListings = await getFeaturedListings();
   const settings = await getSettings();
@@ -75,12 +78,16 @@ export default async function HomePage() {
             {/* Hero Left Column */}
             <div className="md:col-span-7 space-y-6">
               <h1 className="font-heading text-4xl sm:text-5xl md:text-[60px] tracking-tight leading-[1.15] text-[var(--ink)]">
-                Verified plots, flats and villas in Visakhapatnam
+                {settings.hero_heading || 'Verified plots, flats and villas in Visakhapatnam'}
               </h1>
               <p className="text-lg md:text-xl text-[var(--text)] leading-relaxed max-w-xl">
-                Direct broker guidance from Rajesh Ponnada with 10+ years of local property advisory and clear paperwork.
+                {settings.hero_subheading || 'Direct broker guidance from Rajesh Ponnada with 10+ years of local property advisory and clear paperwork.'}
               </p>
-              <LeadActionButtons variant="hero" />
+              <LeadActionButtons
+                variant="hero"
+                phoneNumber={settings.phone}
+                whatsappNumber={settings.whatsapp_number}
+              />
             </div>
 
             {/* Hero Right Column: Brand Banner Block */}
