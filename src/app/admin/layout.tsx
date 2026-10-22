@@ -2,6 +2,8 @@ import React from 'react';
 import { Metadata } from 'next';
 import { AdminNav } from '@/components/admin-nav';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Admin Console | Secure Home Vizag',
   robots: {

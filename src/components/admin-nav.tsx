@@ -8,10 +8,10 @@ import { createClient } from '@/lib/supabase/client';
 
 export function AdminNav() {
   const pathname = usePathname();
-  const supabase = createClient();
 
   const handleSignOut = async () => {
     try {
+      const supabase = createClient();
       await supabase.auth.signOut();
     } catch {
       // Ignored
