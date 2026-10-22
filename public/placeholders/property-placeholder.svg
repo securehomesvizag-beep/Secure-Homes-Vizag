@@ -1,0 +1,7 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#E7E0D5"/>
+  <rect x="20" y="20" width="760" height="560" stroke="#FAF7F2" stroke-width="2"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="'Public Sans', sans-serif" font-size="20" font-weight="600" fill="#4B4F58">
+    Photo to be added
+  </text>
+</svg>

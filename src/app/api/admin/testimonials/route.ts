@@ -1,0 +1,37 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { createAdminClient } from '@/lib/supabase/admin';
+import { Testimonial } from '@/lib/types';
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+
+    const newTestimonial: Testimonial = {
+      id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `testi_${Date.now()}`,
+      client_name: body.client_name,
+      location: body.location || null,
+      quote: body.quote,
+      property_type: body.property_type || null,
+      is_visible: body.is_visible !== undefined ? Boolean(body.is_visible) : false,
+      created_at: new Date().toISOString(),
+    };
+
+    const adminClient = createAdminClient();
+    if (adminClient) {
+      const { data, error } = await adminClient.from('testimonials').insert([newTestimonial]).select().single();
+      if (!error && data) {
+        return NextResponse.json({ success: true, testimonial: data });
+      }
+    }
+
+    if (!global.__testimonials_store) {
+      global.__testimonials_store = [];
+    }
+    global.__testimonials_store.unshift(newTestimonial);
+
+    return NextResponse.json({ success: true, testimonial: newTestimonial });
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : 'Error adding testimonial';
+    return NextResponse.json({ error: msg }, { status: 500 });
+  }
+}

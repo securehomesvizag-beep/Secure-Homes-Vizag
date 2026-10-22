@@ -1,0 +1,8 @@
+<svg width="180" height="48" viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="1" width="46" height="46" rx="4" fill="#FFFEFB" stroke="#E7E0D5" stroke-width="1"/>
+  <circle cx="24" cy="24" r="16" stroke="#14213D" stroke-width="2" fill="none"/>
+  <path d="M16 26L24 18L32 26V32H16V26Z" fill="#14213D"/>
+  <rect x="22" y="27" width="4" height="5" fill="#2F6B4F"/>
+  <text x="56" y="22" font-family="'Fraunces', serif" font-weight="600" font-size="14" fill="#14213D">Secure Home Vizag</text>
+  <text x="56" y="34" font-family="'Public Sans', sans-serif" font-size="10" fill="#4B4F58">Logo placeholder</text>
+</svg>
