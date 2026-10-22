@@ -24,10 +24,10 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    if (!global.__testimonials_store) {
-      global.__testimonials_store = [];
+    if (!(globalThis as any).__testimonials_store) {
+      (globalThis as any).__testimonials_store = [];
     }
-    global.__testimonials_store.unshift(newTestimonial);
+    (globalThis as any).__testimonials_store.unshift(newTestimonial);
 
     return NextResponse.json({ success: true, testimonial: newTestimonial });
   } catch (err: unknown) {

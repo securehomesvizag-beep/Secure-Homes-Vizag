@@ -21,6 +21,13 @@ interface CookieItem {
   options?: Record<string, unknown>;
 }
 
+declare global {
+  var __listings_store: any;
+  var __settings_store: any;
+  var __testimonials_store: any;
+  var __leads_store: any;
+}
+
 // Global Next.js ambient module declaration
 declare module 'next' {
   export interface Metadata {

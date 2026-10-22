@@ -14,9 +14,10 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    if (global.__settings_store) {
-      global.__settings_store = {
-        ...global.__settings_store,
+    const currentSettings = (globalThis as any).__settings_store;
+    if (currentSettings) {
+      (globalThis as any).__settings_store = {
+        ...currentSettings,
         ...body,
       };
     }

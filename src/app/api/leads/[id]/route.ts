@@ -30,8 +30,9 @@ export async function PATCH(
     }
 
     // In-memory update fallback
-    if (global.__leads_store) {
-      const target = global.__leads_store.find((l) => l.id === id);
+    const store = (globalThis as any).__leads_store;
+    if (store && Array.isArray(store)) {
+      const target = store.find((l: any) => l.id === id);
       if (target) {
         if (status) target.status = status;
         if (typeof notes === 'string') target.notes = notes;

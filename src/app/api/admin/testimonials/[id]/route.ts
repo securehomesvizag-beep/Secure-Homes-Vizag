@@ -14,11 +14,12 @@ export async function PATCH(
       await adminClient.from('testimonials').update(body).eq('id', id);
     }
 
-    if (global.__testimonials_store) {
-      const idx = global.__testimonials_store.findIndex((t) => t.id === id);
+    const store = (globalThis as any).__testimonials_store;
+    if (store && Array.isArray(store)) {
+      const idx = store.findIndex((t: any) => t.id === id);
       if (idx !== -1) {
-        global.__testimonials_store[idx] = {
-          ...global.__testimonials_store[idx],
+        store[idx] = {
+          ...store[idx],
           ...body,
         };
       }
@@ -43,8 +44,9 @@ export async function DELETE(
       await adminClient.from('testimonials').delete().eq('id', id);
     }
 
-    if (global.__testimonials_store) {
-      global.__testimonials_store = global.__testimonials_store.filter((t) => t.id !== id);
+    const store = (globalThis as any).__testimonials_store;
+    if (store && Array.isArray(store)) {
+      (globalThis as any).__testimonials_store = store.filter((t: any) => t.id !== id);
     }
 
     return NextResponse.json({ success: true });
