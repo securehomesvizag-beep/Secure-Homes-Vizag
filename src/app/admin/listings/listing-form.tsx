@@ -116,7 +116,7 @@ export function ListingForm({ initialData }: ListingFormProps) {
 
     try {
       const url = isEditing
-        ? `/api/admin/listings/${initialData.id}`
+        ? `/api/admin/listings/${initialData?.id}`
         : '/api/admin/listings';
       const method = isEditing ? 'PATCH' : 'POST';
 
