@@ -9,6 +9,7 @@ import { LeadActionButtons } from './lead-action-buttons';
 
 interface ListingRowCardProps {
   listing: Listing;
+  key?: string;
 }
 
 export function ListingRowCard({ listing }: ListingRowCardProps) {

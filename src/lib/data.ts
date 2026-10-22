@@ -120,25 +120,27 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   working_hours: 'Monday to Saturday: 9:00 AM to 7:00 PM',
 };
 
-// Global in-memory fallback store
-declare global {
-  var __leads_store: Lead[] | undefined;
-  var __listings_store: Listing[] | undefined;
-  var __settings_store: SiteSettings | undefined;
-  var __testimonials_store: Testimonial[] | undefined;
+// Global in-memory fallback store using globalThis
+interface FallbackStore {
+  __leads_store?: Lead[];
+  __listings_store?: Listing[];
+  __settings_store?: SiteSettings;
+  __testimonials_store?: Testimonial[];
 }
 
-if (!global.__leads_store) {
-  global.__leads_store = [];
+const store = globalThis as unknown as FallbackStore;
+
+if (!store.__leads_store) {
+  store.__leads_store = [];
 }
-if (!global.__listings_store) {
-  global.__listings_store = [...DEMO_LISTINGS];
+if (!store.__listings_store) {
+  store.__listings_store = [...DEMO_LISTINGS];
 }
-if (!global.__settings_store) {
-  global.__settings_store = { ...DEFAULT_SETTINGS };
+if (!store.__settings_store) {
+  store.__settings_store = { ...DEFAULT_SETTINGS };
 }
-if (!global.__testimonials_store) {
-  global.__testimonials_store = [];
+if (!store.__testimonials_store) {
+  store.__testimonials_store = [];
 }
 
 export async function getSettings(): Promise<SiteSettings> {
@@ -167,7 +169,7 @@ export async function getSettings(): Promise<SiteSettings> {
       // Fallback
     }
   }
-  return global.__settings_store || DEFAULT_SETTINGS;
+  return store.__settings_store || DEFAULT_SETTINGS;
 }
 
 export async function getListings(type?: PropertyType): Promise<Listing[]> {
@@ -187,10 +189,10 @@ export async function getListings(type?: PropertyType): Promise<Listing[]> {
     }
   }
 
-  const listings = global.__listings_store || DEMO_LISTINGS;
-  const published = listings.filter((l) => l.is_published);
+  const listings = store.__listings_store || DEMO_LISTINGS;
+  const published = listings.filter((l: Listing) => l.is_published);
   if (type) {
-    return published.filter((l) => l.property_type === type);
+    return published.filter((l: Listing) => l.property_type === type);
   }
   return published;
 }
@@ -214,8 +216,8 @@ export async function getFeaturedListings(): Promise<Listing[]> {
     }
   }
 
-  const listings = global.__listings_store || DEMO_LISTINGS;
-  return listings.filter((l) => l.is_published && l.is_featured).slice(0, 3);
+  const listings = store.__listings_store || DEMO_LISTINGS;
+  return listings.filter((l: Listing) => l.is_published && l.is_featured).slice(0, 3);
 }
 
 export async function getListingBySlug(slug: string): Promise<Listing | null> {
@@ -235,8 +237,8 @@ export async function getListingBySlug(slug: string): Promise<Listing | null> {
     }
   }
 
-  const listings = global.__listings_store || DEMO_LISTINGS;
-  return listings.find((l) => l.slug === slug) || null;
+  const listings = store.__listings_store || DEMO_LISTINGS;
+  return listings.find((l: Listing) => l.slug === slug) || null;
 }
 
 export async function getAllListingsForAdmin(): Promise<Listing[]> {
@@ -252,7 +254,7 @@ export async function getAllListingsForAdmin(): Promise<Listing[]> {
     }
   }
 
-  return global.__listings_store || DEMO_LISTINGS;
+  return store.__listings_store || DEMO_LISTINGS;
 }
 
 export async function getTestimonials(): Promise<Testimonial[]> {
@@ -272,7 +274,7 @@ export async function getTestimonials(): Promise<Testimonial[]> {
     }
   }
 
-  return (global.__testimonials_store || []).filter((t) => t.is_visible);
+  return (store.__testimonials_store || []).filter((t: Testimonial) => t.is_visible);
 }
 
 export async function getAllTestimonialsForAdmin(): Promise<Testimonial[]> {
@@ -288,7 +290,7 @@ export async function getAllTestimonialsForAdmin(): Promise<Testimonial[]> {
     }
   }
 
-  return global.__testimonials_store || [];
+  return store.__testimonials_store || [];
 }
 
 export async function insertLead(lead: Omit<Lead, 'id' | 'created_at' | 'status'>): Promise<Lead> {
@@ -311,10 +313,10 @@ export async function insertLead(lead: Omit<Lead, 'id' | 'created_at' | 'status'
     }
   }
 
-  if (!global.__leads_store) {
-    global.__leads_store = [];
+  if (!store.__leads_store) {
+    store.__leads_store = [];
   }
-  global.__leads_store.unshift(newLead);
+  store.__leads_store.unshift(newLead);
   return newLead;
 }
 
@@ -331,5 +333,5 @@ export async function getLeadsForAdmin(): Promise<Lead[]> {
     }
   }
 
-  return global.__leads_store || [];
+  return store.__leads_store || [];
 }
