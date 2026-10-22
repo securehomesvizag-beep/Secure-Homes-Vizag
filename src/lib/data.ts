@@ -25,8 +25,8 @@ export const DEMO_LISTINGS: Listing[] = [
       'Road Width': '40 feet',
       'Possession': 'Immediate',
     },
-    cover_image_url: '/placeholders/plots.svg',
-    images: ['/placeholders/plots.svg'],
+    cover_image_url: '/Plots.jpeg',
+    images: ['/Plots.jpeg'],
     created_at: new Date().toISOString(),
   },
   {
@@ -51,8 +51,8 @@ export const DEMO_LISTINGS: Listing[] = [
       'Floor': '3rd of 5',
       'Car Parking': '1 Covered',
     },
-    cover_image_url: '/placeholders/flats.svg',
-    images: ['/placeholders/flats.svg'],
+    cover_image_url: '/Apartments.jpeg',
+    images: ['/Apartments.jpeg'],
     created_at: new Date().toISOString(),
   },
   {
@@ -77,8 +77,8 @@ export const DEMO_LISTINGS: Listing[] = [
       'Plot Area': '180 sq.yds',
       'Facing': 'North',
     },
-    cover_image_url: '/placeholders/villas.svg',
-    images: ['/placeholders/villas.svg'],
+    cover_image_url: '/Villa.jpeg',
+    images: ['/Villa.jpeg'],
     created_at: new Date().toISOString(),
   },
   {
