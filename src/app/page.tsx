@@ -83,12 +83,12 @@ export default async function HomePage() {
               <LeadActionButtons variant="hero" />
             </div>
 
-            {/* Hero Right Column: Replaceable Photo Block */}
+            {/* Hero Right Column: Brand Banner Block */}
             <div className="md:col-span-5">
-              <div className="relative w-full h-[320px] sm:h-[400px] border border-[var(--line)] rounded-[4px] overflow-hidden bg-[var(--surface)]">
+              <div className="relative w-full h-[340px] sm:h-[420px] border border-[var(--line)] rounded-[8px] overflow-hidden bg-[var(--surface)] shadow-lg hover:shadow-xl transition-shadow">
                 <Image
-                  src="/placeholders/hero.svg"
-                  alt="Visakhapatnam Real Estate Overview"
+                  src="/hero.jpg"
+                  alt="SecureHome Vizag - Verified Plots, Flats and Villas"
                   fill
                   priority
                   className="object-cover"
