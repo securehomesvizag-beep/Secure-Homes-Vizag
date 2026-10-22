@@ -38,10 +38,10 @@ export async function POST(req: NextRequest) {
     }
 
     // In-memory fallback
-    if (!global.__listings_store) {
-      global.__listings_store = [];
+    if (!(globalThis as any).__listings_store) {
+      (globalThis as any).__listings_store = [];
     }
-    global.__listings_store.unshift(newListing);
+    (globalThis as any).__listings_store.unshift(newListing);
 
     return NextResponse.json({ success: true, listing: newListing });
   } catch (err: unknown) {

@@ -26,15 +26,16 @@ export async function PATCH(
       }
     }
 
-    if (global.__listings_store) {
-      const index = global.__listings_store.findIndex((l) => l.id === id);
+    const listingsStore = (globalThis as any).__listings_store;
+    if (listingsStore && Array.isArray(listingsStore)) {
+      const index = listingsStore.findIndex((l: any) => l.id === id);
       if (index !== -1) {
-        global.__listings_store[index] = {
-          ...global.__listings_store[index],
+        listingsStore[index] = {
+          ...listingsStore[index],
           ...body,
           updated_at: new Date().toISOString(),
         };
-        return NextResponse.json({ success: true, listing: global.__listings_store[index] });
+        return NextResponse.json({ success: true, listing: listingsStore[index] });
       }
     }
 
@@ -57,8 +58,9 @@ export async function DELETE(
       await adminClient.from('listings').delete().eq('id', id);
     }
 
-    if (global.__listings_store) {
-      global.__listings_store = global.__listings_store.filter((l) => l.id !== id);
+    const store = (globalThis as any).__listings_store;
+    if (store && Array.isArray(store)) {
+      (globalThis as any).__listings_store = store.filter((l: any) => l.id !== id);
     }
 
     return NextResponse.json({ success: true });

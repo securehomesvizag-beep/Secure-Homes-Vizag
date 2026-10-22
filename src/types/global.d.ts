@@ -21,6 +21,51 @@ interface CookieItem {
   options?: Record<string, unknown>;
 }
 
+// Global Next.js ambient module declaration
+declare module 'next' {
+  export interface Metadata {
+    title?: string | { default: string; template?: string };
+    description?: string;
+    keywords?: string | string[];
+    authors?: Array<{ name: string; url?: string }>;
+    openGraph?: Record<string, unknown>;
+    robots?: Record<string, unknown>;
+    icons?: Record<string, unknown>;
+    metadataBase?: URL;
+    [key: string]: unknown;
+  }
+
+  export namespace MetadataRoute {
+    export interface SitemapItem {
+      url: string;
+      lastModified?: string | Date;
+      changeFrequency?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+      priority?: number;
+    }
+    export type Sitemap = SitemapItem[];
+
+    export interface Robots {
+      rules: {
+        userAgent?: string | string[];
+        allow?: string | string[];
+        disallow?: string | string[];
+        crawlDelay?: number;
+      } | Array<{
+        userAgent: string | string[];
+        allow?: string | string[];
+        disallow?: string | string[];
+        crawlDelay?: number;
+      }>;
+      sitemap?: string | string[];
+      host?: string;
+    }
+  }
+
+  export type NextPage<P = Record<string, unknown>, IP = P> = import('react').ComponentType<P> & {
+    getInitialProps?(context: unknown): IP | Promise<IP>;
+  };
+}
+
 // Fallback ambient module definitions to resolve TypeScript IDE errors while node_modules syncs
 declare module 'next/navigation' {
   export function useRouter(): {
@@ -49,6 +94,7 @@ declare module 'next/image' {
     priority?: boolean;
     quality?: number;
     unoptimized?: boolean;
+    sizes?: string;
     className?: string;
   }
   const Image: React.FC<ImageProps>;
@@ -83,6 +129,10 @@ declare module '@phosphor-icons/react' {
   export const X: Icon;
   export const Phone: Icon;
   export const WhatsappLogo: Icon;
+  export const InstagramLogo: Icon;
+  export const YoutubeLogo: Icon;
+  export const Clock: Icon;
+  export const ArrowsOutSimple: Icon;
   export const ChartLine: Icon;
   export const Users: Icon;
   export const HouseLine: Icon;
