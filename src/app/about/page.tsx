@@ -59,11 +59,12 @@ export default function AboutPage() {
         <div className="md:col-span-5">
           <div className="relative w-full h-[420px] bg-[var(--line)] border border-[var(--line)] rounded-[4px] overflow-hidden">
             <Image
-              src="/placeholders/rajesh-ponnada.svg"
+              src="/Rajesh ponnada.jpeg"
               alt="Rajesh Ponnada, Founder of Secure Home Vizag"
               fill
               priority
-              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="object-cover object-top"
             />
           </div>
         </div>

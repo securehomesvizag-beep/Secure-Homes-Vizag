@@ -8,6 +8,7 @@ This file records all assumptions and placeholder values used in the project in 
 
 ## 2. Branding and Media
 - Logo: The official shield-and-house emblem in navy, teal, and green has been integrated across the website header, footer, admin console, and browser favicon (`/public/brand/logo.svg`, `/public/brand/logo-stacked.svg`, `/src/app/icon.svg`, `/public/favicon.svg`).
+- Founder Photo: The official portrait of founder Rajesh Ponnada is placed at `/public/Rajesh ponnada.jpeg` and integrated on the Home Page and About Page.
 - Listing Images: Placeholder images use a neutral solid background with the text "Photo to be added".
 
 ## 3. Business Details and Defaults
