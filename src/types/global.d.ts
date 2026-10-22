@@ -73,6 +73,74 @@ declare module 'next' {
   };
 }
 
+// Global Next.js server, headers, and font ambient module declarations
+declare module 'next/server' {
+  export class NextRequest extends Request {
+    nextUrl: URL;
+    cookies: {
+      get(name: string): { name: string; value: string } | undefined;
+      getAll(): Array<{ name: string; value: string }>;
+      set(name: string, value: string): void;
+      delete(name: string): void;
+      has(name: string): boolean;
+      clear(): void;
+    };
+    ip?: string;
+  }
+
+  export class NextResponse<Body = unknown> extends Response {
+    static json<JsonBody>(body: JsonBody, init?: ResponseInit): NextResponse<JsonBody>;
+    static redirect(url: string | URL, init?: number | ResponseInit): NextResponse<never>;
+    static rewrite(destination: string | URL, init?: ResponseInit): NextResponse<never>;
+    static next(init?: { headers?: HeadersInit; request?: { headers?: HeadersInit } }): NextResponse<never>;
+    cookies: {
+      get(name: string): { name: string; value: string } | undefined;
+      getAll(): Array<{ name: string; value: string }>;
+      set(name: string, value: string, options?: Record<string, unknown>): this;
+      delete(name: string): this;
+      has(name: string): boolean;
+    };
+  }
+
+  export function userAgent(init: { headers: Headers }): {
+    isBot: boolean;
+    ua: string;
+    browser: { name?: string; version?: string };
+    device: { model?: string; type?: string; vendor?: string };
+    engine: { name?: string; version?: string };
+    os: { name?: string; version?: string };
+    cpu: { architecture?: string };
+  };
+}
+
+declare module 'next/headers' {
+  export function cookies(): Promise<{
+    get(name: string): { name: string; value: string } | undefined;
+    getAll(): Array<{ name: string; value: string }>;
+    set(name: string, value: string, options?: Record<string, unknown>): void;
+    delete(name: string): void;
+    has(name: string): boolean;
+  }>;
+  export function headers(): Promise<Headers>;
+}
+
+declare module 'next/font/google' {
+  export interface FontOptions {
+    weight?: string | string[];
+    subsets?: string[];
+    display?: string;
+    variable?: string;
+    fallback?: string[];
+    preload?: boolean;
+    style?: string | string[];
+    adjustFontFallback?: boolean;
+  }
+  export function Fraunces(options?: FontOptions): { className: string; variable: string; style: { fontFamily: string } };
+  export function Public_Sans(options?: FontOptions): { className: string; variable: string; style: { fontFamily: string } };
+  export function Inter(options?: FontOptions): { className: string; variable: string; style: { fontFamily: string } };
+  export function Roboto(options?: FontOptions): { className: string; variable: string; style: { fontFamily: string } };
+}
+
 // Fallback ambient module definitions to resolve TypeScript IDE errors while node_modules syncs
 declare module 'next/navigation' {
   export function useRouter(): {
