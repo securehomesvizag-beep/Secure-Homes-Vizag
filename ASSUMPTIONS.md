@@ -24,3 +24,10 @@ This file records all assumptions and placeholder values used in the project in 
 ## 4. Approval Rule
 - No RERA numbers, VMRDA numbers, or government license numbers are stored, referenced, or displayed anywhere in the code, database, or UI.
 - Only boolean switches (`vmrda_approved`, `rera_approved`) are stored and displayed as plain text badges ("VMRDA Approved", "RERA Approved").
+
+## 5. Administration
+- Admin Login URL: `/admin/login`
+- Admin ID / Email: `admin@securehomevizag.com`
+- Admin Password: `SecureHome@2026!`
+- Configurable via `ADMIN_EMAIL` and `ADMIN_PASSWORD` environment variables.
+

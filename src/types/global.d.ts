@@ -5,6 +5,8 @@ declare namespace NodeJS {
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY?: string;
     SUPABASE_SERVICE_ROLE_KEY?: string;
     NEXT_PUBLIC_SITE_URL?: string;
+    ADMIN_EMAIL?: string;
+    ADMIN_PASSWORD?: string;
     [key: string]: string | undefined;
   }
 }

@@ -4,10 +4,15 @@ import { NextResponse, type NextRequest } from 'next/server';
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  // If already authenticated and visiting login page, redirect to admin dashboard
+  const adminSession = request.cookies.get('admin_session')?.value;
+  if (pathname === '/admin/login' && adminSession === 'authenticated') {
+    return NextResponse.redirect(new URL('/admin', request.url));
+  }
+
   // Only protect /admin routes, excluding /admin/login
   if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
     // 1. Direct admin session cookie check for immediate authenticated access
-    const adminSession = request.cookies.get('admin_session')?.value;
     if (adminSession === 'authenticated') {
       return NextResponse.next();
     }

@@ -3,15 +3,15 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { createClient } from '@/lib/supabase/client';
+import { Eye, EyeSlash } from '@phosphor-icons/react';
 
 export default function AdminLoginPage() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('admin@securehomevizag.com');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const router = useRouter();
-  const supabase = createClient();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,41 +22,22 @@ export default function AdminLoginPage() {
     const cleanPassword = password.trim();
 
     try {
-      // 1. Instant access via default credentials
-      const isDefaultAdmin =
-        (cleanEmail === 'admin@securehomevizag.com' ||
-         cleanEmail === 'rajesh@securehomevizag.com') &&
-        (cleanPassword === 'SecureHome@2025' ||
-         cleanPassword === 'admin123' ||
-         cleanPassword === 'admin');
-
-      if (isDefaultAdmin) {
-        document.cookie = 'admin_session=authenticated; path=/; max-age=86400; SameSite=Lax';
-        router.push('/admin');
-        router.refresh();
-        return;
-      }
-
-      // 2. Authenticate against Supabase Auth
-      const { error } = await supabase.auth.signInWithPassword({
-        email: cleanEmail,
-        password: cleanPassword,
+      // Call server-side authentication API
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: cleanEmail, password: cleanPassword }),
       });
 
-      if (error) {
-        // If Supabase keys are default/local development
-        if (
-          !process.env.NEXT_PUBLIC_SUPABASE_URL ||
-          process.env.NEXT_PUBLIC_SUPABASE_URL.includes('your-project')
-        ) {
-          document.cookie = 'admin_session=authenticated; path=/; max-age=86400; SameSite=Lax';
-          router.push('/admin');
-          return;
-        }
-        throw error;
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Invalid email address or password');
       }
 
-      document.cookie = 'admin_session=authenticated; path=/; max-age=86400; SameSite=Lax';
+      // Also ensure client cookie is present for immediate navigation
+      document.cookie = 'admin_session=authenticated; path=/; max-age=604800; SameSite=Lax';
+
       router.push('/admin');
       router.refresh();
     } catch (err: unknown) {
@@ -68,8 +49,8 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-[60vh] flex items-center justify-center py-12 px-4">
-      <div className="w-full max-w-md border border-[var(--line)] bg-[var(--surface)] rounded-[4px] p-6 sm:p-8 space-y-6">
+    <div className="min-h-[70vh] flex items-center justify-center py-12 px-4">
+      <div className="w-full max-w-md border border-[var(--line)] bg-[var(--surface)] rounded-[4px] p-6 sm:p-8 space-y-6 shadow-sm">
         <div className="text-center space-y-2">
           <div className="inline-block p-2 bg-[var(--surface)]">
             <Image
@@ -77,6 +58,7 @@ export default function AdminLoginPage() {
               alt="Secure Home Vizag"
               width={180}
               height={45}
+              priority
               className="h-10 w-auto mx-auto"
             />
           </div>
@@ -89,7 +71,7 @@ export default function AdminLoginPage() {
         </div>
 
         {errorMsg && (
-          <div className="p-3 text-sm text-[var(--danger)] border border-[var(--danger)] bg-[var(--surface)] rounded-[4px]">
+          <div className="p-3.5 text-sm text-[#B42318] border border-[#B42318]/20 bg-[#FEF3F2] rounded-[4px]">
             {errorMsg}
           </div>
         )}
@@ -98,43 +80,54 @@ export default function AdminLoginPage() {
           <div>
             <label
               htmlFor="admin-email"
-              className="block text-sm font-semibold text-[var(--ink)] mb-1"
+              className="block text-sm font-semibold text-[var(--ink)] mb-1.5"
             >
-              Email Address
+              Admin ID / Email
             </label>
             <input
               id="admin-email"
               type="email"
               required
+              autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="rajesh@securehomevizag.com"
-              className="w-full px-3.5 py-2.5 text-base bg-[var(--surface)] border border-[var(--line)] rounded-[4px] text-[var(--ink)] min-h-[44px]"
+              placeholder="admin@securehomevizag.com"
+              className="w-full px-3.5 py-2.5 text-base bg-[var(--surface)] border border-[var(--line)] rounded-[4px] text-[var(--ink)] focus:outline-none focus:border-[var(--brand)] min-h-[44px]"
             />
           </div>
 
           <div>
             <label
               htmlFor="admin-password"
-              className="block text-sm font-semibold text-[var(--ink)] mb-1"
+              className="block text-sm font-semibold text-[var(--ink)] mb-1.5"
             >
               Password
             </label>
-            <input
-              id="admin-password"
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full px-3.5 py-2.5 text-base bg-[var(--surface)] border border-[var(--line)] rounded-[4px] text-[var(--ink)] min-h-[44px]"
-            />
+            <div className="relative">
+              <input
+                id="admin-password"
+                type={showPassword ? 'text' : 'password'}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter password"
+                className="w-full px-3.5 py-2.5 pr-11 text-base bg-[var(--surface)] border border-[var(--line)] rounded-[4px] text-[var(--ink)] focus:outline-none focus:border-[var(--brand)] min-h-[44px]"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-[var(--text)] hover:text-[var(--ink)] focus:outline-none"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? <EyeSlash size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 px-4 text-base font-semibold text-[var(--surface)] bg-[var(--brand)] hover:bg-[var(--brand-hover)] rounded-[4px] disabled:opacity-50 min-h-[44px]"
+            className="w-full py-3.5 px-4 text-base font-semibold text-[var(--surface)] bg-[var(--brand)] hover:bg-[var(--brand-hover)] transition-colors rounded-[4px] disabled:opacity-50 min-h-[44px] cursor-pointer"
           >
             {loading ? 'Authenticating...' : 'Sign In'}
           </button>
@@ -142,7 +135,7 @@ export default function AdminLoginPage() {
 
         <div className="pt-2 border-t border-[var(--line)] text-center">
           <p className="text-xs text-[var(--text)]">
-            Admin credentials: <span className="font-semibold text-[var(--ink)]">admin@securehomevizag.com</span> / <span className="font-semibold text-[var(--ink)]">SecureHome@2025</span>
+            Admin Access: <span className="font-semibold text-[var(--ink)]">admin@securehomevizag.com</span>
           </p>
         </div>
       </div>

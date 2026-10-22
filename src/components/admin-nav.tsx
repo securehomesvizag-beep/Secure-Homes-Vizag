@@ -11,6 +11,7 @@ export function AdminNav() {
 
   const handleSignOut = async () => {
     try {
+      await fetch('/api/admin/logout', { method: 'POST' });
       const supabase = createClient();
       await supabase.auth.signOut();
     } catch {
