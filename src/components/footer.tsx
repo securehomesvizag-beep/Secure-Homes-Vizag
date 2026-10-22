@@ -13,8 +13,8 @@ export function Footer() {
             <div className="bg-[var(--surface)] p-2 inline-block rounded-[4px]">
               <Image
                 src="/brand/logo.svg"
-                alt="Secure Home Vizag Logo placeholder"
-                width={150}
+                alt="Secure Home Vizag"
+                width={160}
                 height={40}
                 className="h-9 w-auto"
               />

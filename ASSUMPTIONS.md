@@ -7,7 +7,7 @@ This file records all assumptions and placeholder values used in the project in 
 - Reviewed draft, have a lawyer confirm before launch.
 
 ## 2. Branding and Media
-- Logo: Until the official round shield-and-house emblem in navy and teal is provided, a placeholder box titled "Logo placeholder" is placed at `/public/brand/logo.svg` and `/public/brand/logo.png`. It is replaceable by a single file swap.
+- Logo: The official shield-and-house emblem in navy, teal, and green has been integrated across the website header, footer, admin console, and browser favicon (`/public/brand/logo.svg`, `/public/brand/logo-stacked.svg`, `/src/app/icon.svg`, `/public/favicon.svg`).
 - Listing Images: Placeholder images use a neutral solid background with the text "Photo to be added".
 
 ## 3. Business Details and Defaults

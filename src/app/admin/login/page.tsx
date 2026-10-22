@@ -54,9 +54,9 @@ export default function AdminLoginPage() {
           <div className="inline-block p-2 bg-[var(--surface)]">
             <Image
               src="/brand/logo.svg"
-              alt="Secure Home Vizag Logo placeholder"
-              width={160}
-              height={44}
+              alt="Secure Home Vizag"
+              width={180}
+              height={45}
               className="h-10 w-auto mx-auto"
             />
           </div>

@@ -26,11 +26,11 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-2" aria-label="Secure Home Vizag Home">
           <Image
             src="/brand/logo.svg"
-            alt="Secure Home Vizag Logo placeholder"
-            width={160}
-            height={44}
+            alt="Secure Home Vizag"
+            width={180}
+            height={45}
             priority
-            className="h-10 w-auto"
+            className="h-10 sm:h-11 w-auto"
           />
         </Link>
 

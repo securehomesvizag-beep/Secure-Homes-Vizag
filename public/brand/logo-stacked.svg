@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 220" width="100%" height="100%" fill="none">
+  <defs>
+    <!-- Shield Top Gradient: Deep Navy to Cyan/Teal -->
+    <linearGradient id="shieldGradStacked" x1="60" y1="20" x2="180" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#142154"/>
+      <stop offset="45%" stop-color="#19407E"/>
+      <stop offset="85%" stop-color="#0E8A94"/>
+      <stop offset="100%" stop-color="#14B8A6"/>
+    </linearGradient>
+
+    <!-- Lower Green Swoosh Gradient: Leaf Green to Lime -->
+    <linearGradient id="greenSwooshGradStacked" x1="75" y1="120" x2="190" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2E7D32"/>
+      <stop offset="40%" stop-color="#43A047"/>
+      <stop offset="85%" stop-color="#68BA31"/>
+      <stop offset="100%" stop-color="#84CC16"/>
+    </linearGradient>
+
+    <!-- Outer Green Wing Gradient -->
+    <linearGradient id="outerWingGradStacked" x1="105" y1="140" x2="200" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#388E3C"/>
+      <stop offset="60%" stop-color="#62B930"/>
+      <stop offset="100%" stop-color="#8CD629"/>
+    </linearGradient>
+
+    <!-- Bottom Left Navy Swoosh -->
+    <linearGradient id="navySwooshGradStacked" x1="50" y1="85" x2="130" y2="115" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#111B42"/>
+      <stop offset="100%" stop-color="#1B3573"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ==================== SHIELD EMBLEM (CENTERED) ==================== -->
+  <g id="shield-emblem" transform="translate(62, 10)">
+    <!-- Main Upper Shield Body (Navy to Teal) -->
+    <path d="M78 12 C64 15 42 20 25 26 C23 44 24 67 33 88 C43 83 58 77 75 70 C100 60 119 48 132 32 C121 24 100 16 78 12 Z" 
+          fill="url(#shieldGradStacked)"/>
+
+    <!-- Inner Shield Depth / House Wall Area -->
+    <path d="M28 35 C27 52 29 70 36 83 C47 78 61 72 79 66 C100 58 116 46 126 33 C114 26 96 21 78 18 C61 21 43 28 28 35 Z" 
+          fill="#162963" opacity="0.65"/>
+
+    <!-- White Roof with Left Overhang & Right Chimney -->
+    <!-- Chimney -->
+    <rect x="92" y="31" width="6" height="12" fill="#FFFFFF"/>
+    <!-- Triangular Overhanging Roof -->
+    <path d="M78 22 L36 53 L44 55 L43 60 L31 52 L78 22 Z" fill="#FFFFFF"/>
+    <path d="M78 22 L110 43 L103 47 L78 30 L45 56 L40 50 L78 22 Z" fill="#FFFFFF"/>
+
+    <!-- Two White Square Windows in Dark Wall -->
+    <rect x="67" y="45" width="8" height="8" rx="1" fill="#FFFFFF"/>
+    <rect x="79" y="40" width="8" height="8" rx="1" fill="#FFFFFF"/>
+
+    <!-- Dynamic Base Ribbon / Dark Blue Swoosh on Left -->
+    <path d="M16 62 C14 74 21 86 37 93 C51 88 67 81 85 73 C66 78 46 81 32 78 C23 76 18 70 16 62 Z" 
+          fill="url(#navySwooshGradStacked)"/>
+
+    <!-- Main Dynamic Green Swoosh / Lower Shield Crescent -->
+    <path d="M21 72 C27 89 41 103 64 110 C85 115 106 105 124 81 C133 68 138 51 140 36 C137 48 128 65 116 80 C98 99 80 105 62 102 C43 97 29 86 21 72 Z" 
+          fill="url(#greenSwooshGradStacked)"/>
+
+    <!-- Outer Right Green Accent Wing -->
+    <path d="M52 108 C68 117 87 119 105 107 C123 95 135 73 142 49 C144 37 144 30 144 29 C142 39 139 56 128 73 C116 92 98 104 80 105 C70 106 61 106 52 108 Z" 
+          fill="url(#outerWingGradStacked)"/>
+  </g>
+
+  <!-- ==================== BRAND TYPOGRAPHY (CENTERED) ==================== -->
+  <g id="brand-text" transform="translate(140, 160)">
+    <!-- "SecureHome" -->
+    <text x="0" y="0" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="800" text-anchor="middle" letter-spacing="-0.5px">
+      <tspan fill="#1D3977">Secure</tspan>
+      <tspan fill="#4CA82B">Home</tspan>
+    </text>
+
+    <!-- Subtitle: "— VIZAG —" -->
+    <!-- Left Thin Accent Line -->
+    <line x1="-80" y1="16" x2="-35" y2="16" stroke="#94A3B8" stroke-width="1.2" stroke-linecap="round"/>
+    
+    <!-- Tracked VIZAG Text -->
+    <text x="0" y="20" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#64748B" letter-spacing="4px" text-anchor="middle">
+      VIZAG
+    </text>
+
+    <!-- Right Thin Accent Line -->
+    <line x1="35" y1="16" x2="80" y2="16" stroke="#94A3B8" stroke-width="1.2" stroke-linecap="round"/>
+  </g>
+</svg>
