@@ -77,10 +77,10 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
             {/* Hero Left Column */}
             <div className="md:col-span-7 space-y-6">
-              <h1 className="font-heading text-4xl sm:text-5xl md:text-[60px] tracking-tight leading-[1.15] text-[var(--ink)]">
+              <h1 className="font-heading text-3xl sm:text-5xl md:text-[60px] tracking-tight leading-[1.15] text-[var(--ink)]">
                 {settings.hero_heading || 'Verified plots, flats and villas in Visakhapatnam'}
               </h1>
-              <p className="text-lg md:text-xl text-[var(--text)] leading-relaxed max-w-xl">
+              <p className="text-base sm:text-lg md:text-xl text-[var(--text)] leading-relaxed max-w-xl">
                 {settings.hero_subheading || 'Direct broker guidance from Rajesh Ponnada with 10+ years of local property advisory and clear paperwork.'}
               </p>
               <LeadActionButtons
@@ -92,12 +92,13 @@ export default async function HomePage() {
 
             {/* Hero Right Column: Brand Banner Block */}
             <div className="md:col-span-5">
-              <div className="relative w-full h-[340px] sm:h-[420px] border border-[var(--line)] rounded-[8px] overflow-hidden bg-[var(--surface)] shadow-lg hover:shadow-xl transition-shadow">
+              <div className="relative w-full h-[260px] sm:h-[340px] md:h-[420px] border border-[var(--line)] rounded-[8px] overflow-hidden bg-[var(--surface)] shadow-lg hover:shadow-xl transition-shadow">
                 <Image
                   src="/hero.jpg"
                   alt="SecureHome Vizag - Verified Plots, Flats and Villas"
                   fill
                   priority
+                  sizes="(max-width: 768px) 100vw, 42vw"
                   className="object-cover"
                 />
               </div>

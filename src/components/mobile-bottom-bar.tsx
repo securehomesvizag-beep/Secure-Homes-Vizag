@@ -3,14 +3,20 @@
 import React from 'react';
 import { Phone, WhatsappLogo } from '@phosphor-icons/react';
 import { SiteSettings } from '@/lib/types';
+import { useResponsive } from '@/hooks/use-responsive';
 
 interface MobileBottomBarProps {
   settings?: SiteSettings;
 }
 
 export function MobileBottomBar({ settings }: MobileBottomBarProps) {
+  const { isMobile, isMounted } = useResponsive();
   const phone = settings?.phone || '8019928236';
   const whatsappNumber = settings?.whatsapp_number || '8019928236';
+
+  if (isMounted && !isMobile) {
+    return null;
+  }
 
   const logClick = async (source: 'whatsapp_click' | 'call_click') => {
     try {
@@ -40,7 +46,7 @@ export function MobileBottomBar({ settings }: MobileBottomBarProps) {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-[var(--surface)] border-t border-[var(--line)] p-2 md:hidden">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-[var(--surface)] border-t border-[var(--line)] px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
       <div className="grid grid-cols-2 gap-2">
         <a
           href={`tel:+91${phone}`}

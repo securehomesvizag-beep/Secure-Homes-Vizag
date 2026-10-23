@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { List, X } from '@phosphor-icons/react';
 import { LeadActionButtons } from './lead-action-buttons';
 import { SiteSettings } from '@/lib/types';
+import { useResponsive } from '@/hooks/use-responsive';
 
 interface NavbarProps {
   settings?: SiteSettings;
@@ -15,6 +16,31 @@ interface NavbarProps {
 export function Navbar({ settings }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { isDesktop } = useResponsive();
+
+  // Auto-close mobile menu on desktop breakpoint
+  useEffect(() => {
+    if (isDesktop && mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+  }, [isDesktop, mobileMenuOpen]);
+
+  // Auto-close mobile menu on navigation
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const links = [
     { label: 'Home', href: '/' },
