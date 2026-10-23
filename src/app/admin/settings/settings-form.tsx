@@ -16,6 +16,18 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
   const [heroSubheading, setHeroSubheading] = useState(initialSettings.hero_subheading || 'Direct broker guidance with verified title records, clear pricing, and no hidden charges.');
   const [officeAddress, setOfficeAddress] = useState(initialSettings.office_address || '');
   const [workingHours, setWorkingHours] = useState(initialSettings.working_hours || 'Monday to Saturday: 9:00 AM to 7:00 PM');
+  const [plotsDescription, setPlotsDescription] = useState(
+    initialSettings.plots_description || 'Clear title VMRDA & approved residential plots in high-growth corridors like Anandapuram, Bheemili & Madhurawada.'
+  );
+  const [flatsDescription, setFlatsDescription] = useState(
+    initialSettings.flats_description || 'Ready-to-move and under-construction 2 & 3 BHK luxury apartments with approved plans and quality amenities.'
+  );
+  const [villasDescription, setVillasDescription] = useState(
+    initialSettings.villas_description || 'Independent duplex houses and premium gated community coastal villas with private road access and modern infrastructure.'
+  );
+  const [commercialDescription, setCommercialDescription] = useState(
+    initialSettings.commercial_description || 'High-visibility retail shops, prime highway commercial plots, and office spaces with direct road access.'
+  );
 
   const [saving, setSaving] = useState(false);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
@@ -41,6 +53,10 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
           hero_subheading: heroSubheading,
           office_address: officeAddress,
           working_hours: workingHours,
+          plots_description: plotsDescription,
+          flats_description: flatsDescription,
+          villas_description: villasDescription,
+          commercial_description: commercialDescription,
         }),
       });
 
@@ -199,6 +215,72 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
           onChange={(e) => setWorkingHours(e.target.value)}
           className="w-full px-3.5 py-2.5 text-base bg-[var(--surface)] border border-[var(--line)] rounded-[4px] text-[var(--ink)] min-h-[44px]"
         />
+      </div>
+
+      {/* Property Category Short Descriptions (Home Screen) */}
+      <div className="pt-4 border-t border-[var(--line)] space-y-4">
+        <div>
+          <h3 className="text-base font-bold text-[var(--ink)]">Property Category Short Descriptions (Home Screen)</h3>
+          <p className="text-xs text-[var(--muted)] mt-0.5">
+            These descriptions appear directly beneath each property card on the home screen property section.
+          </p>
+        </div>
+
+        <div>
+          <label htmlFor="setting-plots-desc" className="block text-sm font-semibold text-[var(--ink)] mb-1">
+            Plots & Land Short Description
+          </label>
+          <textarea
+            id="setting-plots-desc"
+            rows={2}
+            value={plotsDescription}
+            onChange={(e) => setPlotsDescription(e.target.value)}
+            className="w-full px-3.5 py-2.5 text-base bg-[var(--surface)] border border-[var(--line)] rounded-[4px] text-[var(--ink)] resize-none"
+            placeholder="e.g. Clear title VMRDA & approved residential plots in high-growth corridors..."
+          />
+        </div>
+
+        <div>
+          <label htmlFor="setting-flats-desc" className="block text-sm font-semibold text-[var(--ink)] mb-1">
+            Flats & Apartments Short Description
+          </label>
+          <textarea
+            id="setting-flats-desc"
+            rows={2}
+            value={flatsDescription}
+            onChange={(e) => setFlatsDescription(e.target.value)}
+            className="w-full px-3.5 py-2.5 text-base bg-[var(--surface)] border border-[var(--line)] rounded-[4px] text-[var(--ink)] resize-none"
+            placeholder="e.g. Ready-to-move and under-construction 2 & 3 BHK luxury apartments..."
+          />
+        </div>
+
+        <div>
+          <label htmlFor="setting-villas-desc" className="block text-sm font-semibold text-[var(--ink)] mb-1">
+            Villas & Houses Short Description
+          </label>
+          <textarea
+            id="setting-villas-desc"
+            rows={2}
+            value={villasDescription}
+            onChange={(e) => setVillasDescription(e.target.value)}
+            className="w-full px-3.5 py-2.5 text-base bg-[var(--surface)] border border-[var(--line)] rounded-[4px] text-[var(--ink)] resize-none"
+            placeholder="e.g. Independent duplex houses and premium gated community coastal villas..."
+          />
+        </div>
+
+        <div>
+          <label htmlFor="setting-commercial-desc" className="block text-sm font-semibold text-[var(--ink)] mb-1">
+            Commercial Properties Short Description
+          </label>
+          <textarea
+            id="setting-commercial-desc"
+            rows={2}
+            value={commercialDescription}
+            onChange={(e) => setCommercialDescription(e.target.value)}
+            className="w-full px-3.5 py-2.5 text-base bg-[var(--surface)] border border-[var(--line)] rounded-[4px] text-[var(--ink)] resize-none"
+            placeholder="e.g. High-visibility retail shops, prime highway commercial plots, and office spaces..."
+          />
+        </div>
       </div>
 
       <div className="pt-2">

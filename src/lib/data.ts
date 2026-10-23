@@ -120,6 +120,10 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   hero_subheading: 'Direct broker guidance with verified title records, clear pricing, and no hidden charges.',
   office_address: 'Visakhapatnam, Andhra Pradesh',
   working_hours: 'Monday to Saturday: 9:00 AM to 7:00 PM',
+  plots_description: 'Clear title VMRDA & approved residential plots in high-growth corridors like Anandapuram, Bheemili & Madhurawada.',
+  flats_description: 'Ready-to-move and under-construction 2 & 3 BHK luxury apartments with approved plans and quality amenities.',
+  villas_description: 'Independent duplex houses and premium gated community coastal villas with private road and modern infrastructure.',
+  commercial_description: 'High-visibility retail shops, prime highway commercial plots, and office spaces with direct road access.',
 };
 
 // Global in-memory fallback store using globalThis
@@ -145,7 +149,40 @@ if (!store.__testimonials_store) {
   store.__testimonials_store = [];
 }
 
+export function getLocalSettings(): SiteSettings {
+  try {
+    const filePath = path.join(process.cwd(), 'data', 'settings.json');
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf-8');
+      if (content.trim()) {
+        const parsed = JSON.parse(content);
+        return { ...DEFAULT_SETTINGS, ...parsed };
+      }
+    }
+  } catch {
+    // Ignore error
+  }
+  return store.__settings_store || DEFAULT_SETTINGS;
+}
+
+export function saveLocalSettings(settings: Partial<SiteSettings>) {
+  try {
+    const current = getLocalSettings();
+    const merged = { ...current, ...settings };
+    const dirPath = path.join(process.cwd(), 'data');
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+    }
+    const filePath = path.join(dirPath, 'settings.json');
+    fs.writeFileSync(filePath, JSON.stringify(merged, null, 2), 'utf-8');
+    store.__settings_store = merged;
+  } catch {
+    // Ignore error
+  }
+}
+
 export async function getSettings(): Promise<SiteSettings> {
+  const localSettings = getLocalSettings();
   const adminClient = createAdminClient();
   if (adminClient) {
     try {
@@ -155,23 +192,29 @@ export async function getSettings(): Promise<SiteSettings> {
         data.forEach((row: { key: string; value: string }) => {
           settingsMap[row.key] = row.value;
         });
-        return {
-          phone: settingsMap.phone || DEFAULT_SETTINGS.phone,
-          whatsapp_number: settingsMap.whatsapp_number || DEFAULT_SETTINGS.whatsapp_number,
-          whatsapp_link: settingsMap.whatsapp_link || DEFAULT_SETTINGS.whatsapp_link,
-          instagram_url: settingsMap.instagram_url || DEFAULT_SETTINGS.instagram_url,
-          youtube_url: settingsMap.youtube_url || DEFAULT_SETTINGS.youtube_url,
-          hero_heading: settingsMap.hero_heading || DEFAULT_SETTINGS.hero_heading,
-          hero_subheading: settingsMap.hero_subheading || DEFAULT_SETTINGS.hero_subheading,
-          office_address: settingsMap.office_address || DEFAULT_SETTINGS.office_address,
-          working_hours: settingsMap.working_hours || DEFAULT_SETTINGS.working_hours,
+        const merged: SiteSettings = {
+          phone: settingsMap.phone || localSettings.phone,
+          whatsapp_number: settingsMap.whatsapp_number || localSettings.whatsapp_number,
+          whatsapp_link: settingsMap.whatsapp_link || localSettings.whatsapp_link,
+          instagram_url: settingsMap.instagram_url || localSettings.instagram_url,
+          youtube_url: settingsMap.youtube_url || localSettings.youtube_url,
+          hero_heading: settingsMap.hero_heading || localSettings.hero_heading,
+          hero_subheading: settingsMap.hero_subheading || localSettings.hero_subheading,
+          office_address: settingsMap.office_address || localSettings.office_address,
+          working_hours: settingsMap.working_hours || localSettings.working_hours,
+          plots_description: settingsMap.plots_description || localSettings.plots_description || DEFAULT_SETTINGS.plots_description,
+          flats_description: settingsMap.flats_description || localSettings.flats_description || DEFAULT_SETTINGS.flats_description,
+          villas_description: settingsMap.villas_description || localSettings.villas_description || DEFAULT_SETTINGS.villas_description,
+          commercial_description: settingsMap.commercial_description || localSettings.commercial_description || DEFAULT_SETTINGS.commercial_description,
         };
+        saveLocalSettings(merged);
+        return merged;
       }
     } catch {
       // Fallback
     }
   }
-  return store.__settings_store || DEFAULT_SETTINGS;
+  return localSettings;
 }
 
 export async function getListings(type?: PropertyType): Promise<Listing[]> {

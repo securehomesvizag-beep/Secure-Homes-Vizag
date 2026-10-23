@@ -75,6 +75,10 @@ export interface SiteSettings {
   hero_subheading: string;
   office_address: string;
   working_hours: string;
+  plots_description?: string;
+  flats_description?: string;
+  villas_description?: string;
+  commercial_description?: string;
 }
 
 export const PROPERTY_TYPE_LABELS: Record<PropertyType, string> = {

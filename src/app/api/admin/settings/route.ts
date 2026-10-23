@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { saveLocalSettings } from '@/lib/data';
 import { revalidatePath } from 'next/cache';
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
+    // 1. Save locally to disk and memory
+    saveLocalSettings(body);
+
+    // 2. Also sync to Supabase
     const adminClient = createAdminClient();
     if (adminClient) {
       for (const [key, value] of Object.entries(body)) {
@@ -19,14 +24,6 @@ export async function POST(req: NextRequest) {
           console.error(`Failed to update setting [${key}]:`, error);
         }
       }
-    }
-
-    const currentSettings = (globalThis as any).__settings_store;
-    if (currentSettings) {
-      (globalThis as any).__settings_store = {
-        ...currentSettings,
-        ...body,
-      };
     }
 
     // Immediately revalidate all public pages displaying brand settings
