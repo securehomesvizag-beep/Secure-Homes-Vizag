@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { getListings } from '@/lib/data';
 import { PropertyType, PROPERTY_TYPE_LABELS } from '@/lib/types';
 import { ListingRowCard } from '@/components/listing-row-card';
-import { WhatsappLogo, ArrowUpRight, ShieldCheck, MapPin } from '@phosphor-icons/react/dist/ssr';
+import { WhatsappLogo, ArrowUpRight, ShieldCheck, MapPin, CaretDown } from '@phosphor-icons/react/dist/ssr';
 import { getBreadcrumbJsonLd, getListingsItemListJsonLd, getFaqJsonLd } from '@/lib/jsonld';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.securehomevizag.com';
@@ -446,14 +446,27 @@ export default async function ListingsPage({
 
         <div className="divide-y divide-[var(--line)] border border-[var(--line)] rounded-[4px] bg-[var(--surface)]">
           {meta.faqs.map((faq, idx) => (
-            <div key={idx} className="p-6 space-y-2">
-              <h3 className="font-heading text-lg text-[var(--ink)]">
-                {faq.question}
-              </h3>
-              <p className="text-sm sm:text-base text-[var(--text)] leading-relaxed">
-                {faq.answer}
-              </p>
-            </div>
+            <details
+              key={idx}
+              className="group p-5 sm:p-6 transition-colors hover:bg-[var(--line)]/20 select-none"
+              itemScope
+              itemType="https://schema.org/Question"
+            >
+              <summary className="flex items-center justify-between gap-4 font-heading text-base sm:text-lg text-[var(--ink)] cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium">
+                <span itemProp="name" className="leading-snug">{faq.question}</span>
+                <span className="flex-shrink-0 text-[var(--brand)] transition-transform duration-200 group-open:rotate-180" aria-hidden="true">
+                  <CaretDown size={20} weight="bold" />
+                </span>
+              </summary>
+              <div
+                itemScope
+                itemType="https://schema.org/Answer"
+                itemProp="acceptedAnswer"
+                className="pt-3 pr-4 sm:pr-8 text-sm sm:text-base text-[var(--text)] leading-relaxed cursor-text"
+              >
+                <p itemProp="text">{faq.answer}</p>
+              </div>
+            </details>
           ))}
         </div>
       </section>

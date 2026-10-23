@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
-import { ArrowUpRight, MapPin } from '@phosphor-icons/react/dist/ssr';
+import { ArrowUpRight, MapPin, CaretDown } from '@phosphor-icons/react/dist/ssr';
 import { getFeaturedListings, getSettings, getTestimonials } from '@/lib/data';
 import { LeadActionButtons } from '@/components/lead-action-buttons';
 import { ListingRowCard } from '@/components/listing-row-card';
@@ -554,44 +554,7 @@ export default async function HomePage() {
       {/* 8. Optimized Social Video & Channel Showcase */}
       <SocialVideoSection settings={settings} />
 
-      {/* 9. FAQ Section (drives Featured Snippet + PAA + AI Overview eligibility) */}
-      <section className="py-16 md:py-24 border-b border-[var(--line)]" aria-label="Frequently Asked Questions" itemScope itemType="https://schema.org/FAQPage">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
-          <div className="max-w-2xl mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl text-[var(--ink)] mb-3">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-[var(--text)] text-base">
-              Common questions about property buying, verification, and the advisory process in Visakhapatnam.
-            </p>
-          </div>
-          <div className="divide-y divide-[var(--line)] border border-[var(--line)] rounded-[4px] bg-[var(--surface)]">
-            {HOME_FAQS.map((faq, idx) => (
-              <div key={idx} className="p-6 sm:p-8 space-y-2" itemScope itemType="https://schema.org/Question">
-                <h3 className="font-heading text-lg text-[var(--ink)]" itemProp="name">
-                  {faq.question}
-                </h3>
-                <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
-                  <p className="text-sm md:text-base text-[var(--text)] leading-relaxed" itemProp="text">
-                    {faq.answer}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--brand)] hover:underline"
-            >
-              <span>Have more questions? Contact Rajesh Ponnada directly</span>
-              <ArrowUpRight size={16} weight="regular" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 10. Enquiry form section (Navy background, flat) */}
+      {/* 9. Enquiry form section (Navy background, flat) */}
       <section className="bg-[var(--ink)] text-[#FAF7F2] py-16 md:py-24" aria-label="Contact Enquiry Form" id="enquiry">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mx-auto">
@@ -606,6 +569,56 @@ export default async function HomePage() {
             <div className="bg-[#172544] p-6 sm:p-8 border border-[#233355] rounded-[4px]">
               <LeadCaptureForm inDarkSection={true} />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 10. FAQ Section (Click to view answers, compact accordion, drives Featured Snippet + PAA + AI Overview eligibility) */}
+      <section className="py-16 md:py-24 border-b border-[var(--line)] bg-[var(--surface)]" aria-label="Frequently Asked Questions" itemScope itemType="https://schema.org/FAQPage">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl mb-10">
+            <h2 className="font-heading text-3xl md:text-4xl text-[var(--ink)] mb-3">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-[var(--text)] text-base">
+              Common questions about property buying, verification, and the advisory process in Visakhapatnam. Click any question to read the full answer.
+            </p>
+          </div>
+
+          <div className="divide-y divide-[var(--line)] border border-[var(--line)] rounded-[4px] bg-[var(--bg)] shadow-xs">
+            {HOME_FAQS.map((faq, idx) => (
+              <details
+                key={idx}
+                className="group p-5 sm:p-6 transition-colors hover:bg-[var(--surface)] select-none"
+                itemScope
+                itemType="https://schema.org/Question"
+              >
+                <summary className="flex items-center justify-between gap-4 font-heading text-base sm:text-lg text-[var(--ink)] cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium">
+                  <span itemProp="name" className="leading-snug">{faq.question}</span>
+                  <span className="flex-shrink-0 text-[var(--brand)] transition-transform duration-200 group-open:rotate-180" aria-hidden="true">
+                    <CaretDown size={20} weight="bold" />
+                  </span>
+                </summary>
+                <div
+                  itemScope
+                  itemType="https://schema.org/Answer"
+                  itemProp="acceptedAnswer"
+                  className="pt-3 pr-4 sm:pr-8 text-sm sm:text-base text-[var(--text)] leading-relaxed cursor-text"
+                >
+                  <p itemProp="text">{faq.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--brand)] hover:underline"
+            >
+              <span>Have more questions? Contact Rajesh Ponnada directly</span>
+              <ArrowUpRight size={16} weight="regular" />
+            </Link>
           </div>
         </div>
       </section>
