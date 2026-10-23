@@ -150,9 +150,16 @@ if (!store.__testimonials_store) {
   store.__testimonials_store = [];
 }
 
+function getCwd(): string {
+  if (typeof process !== 'undefined' && typeof (process as unknown as { cwd?: () => string }).cwd === 'function') {
+    return (process as unknown as { cwd: () => string }).cwd();
+  }
+  return '.';
+}
+
 export function getLocalSettings(): SiteSettings {
   try {
-    const filePath = path.join(process.cwd(), 'data', 'settings.json');
+    const filePath = path.join(getCwd(), 'data', 'settings.json');
     if (fs.existsSync(filePath)) {
       const content = fs.readFileSync(filePath, 'utf-8');
       if (content.trim()) {
@@ -170,7 +177,7 @@ export function saveLocalSettings(settings: Partial<SiteSettings>) {
   try {
     const current = getLocalSettings();
     const merged = { ...current, ...settings };
-    const dirPath = path.join(process.cwd(), 'data');
+    const dirPath = path.join(getCwd(), 'data');
     if (!fs.existsSync(dirPath)) {
       fs.mkdirSync(dirPath, { recursive: true });
     }
@@ -341,7 +348,7 @@ export async function getAllTestimonialsForAdmin(): Promise<Testimonial[]> {
 
 function getLocalLeads(): Lead[] {
   try {
-    const filePath = path.join(process.cwd(), 'data', 'leads.json');
+    const filePath = path.join(getCwd(), 'data', 'leads.json');
     if (fs.existsSync(filePath)) {
       const content = fs.readFileSync(filePath, 'utf-8');
       if (content.trim()) {
@@ -359,7 +366,7 @@ function getLocalLeads(): Lead[] {
 
 function saveLocalLeads(leads: Lead[]) {
   try {
-    const dirPath = path.join(process.cwd(), 'data');
+    const dirPath = path.join(getCwd(), 'data');
     if (!fs.existsSync(dirPath)) {
       fs.mkdirSync(dirPath, { recursive: true });
     }
