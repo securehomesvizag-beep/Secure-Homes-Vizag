@@ -26,14 +26,15 @@ export function SplashScreen() {
 
     // Status milestones for genuine real estate credibility
     const stages = [
-      { at: 15, text: 'Connecting Visakhapatnam Properties...' },
-      { at: 45, text: 'Verifying 100% Legal Clearances...' },
-      { at: 75, text: 'Preparing Verified Plots, Flats & Villas...' },
-      { at: 95, text: 'Welcome to Secure Home Vizag' },
+      { at: 10, text: 'Connecting Visakhapatnam Real Estate Database...' },
+      { at: 30, text: 'Scanning VMRDA & RERA Approved Layouts...' },
+      { at: 55, text: 'Verifying 30-Year Link Documents & Clear Titles...' },
+      { at: 80, text: 'Preparing Verified Plots, Flats & Villas...' },
+      { at: 96, text: 'Welcome to Secure Home Vizag' },
     ];
 
     const startTime = Date.now();
-    const duration = 1900; // 1.9s fast, snappy, professional
+    const duration = 4000; // Minimum 4 seconds animation
 
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;
@@ -56,7 +57,7 @@ export function SplashScreen() {
         clearInterval(interval);
         setTimeout(() => {
           triggerExit();
-        }, 220);
+        }, 300);
       }
     }, 25);
 
