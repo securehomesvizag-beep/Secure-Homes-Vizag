@@ -5,6 +5,7 @@ import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { MobileBottomBar } from '@/components/mobile-bottom-bar';
 import { DesktopWhatsAppButton } from '@/components/desktop-whatsapp-button';
+import { SplashScreen } from '@/components/splash-screen';
 import { getSettings } from '@/lib/data';
 import { getRealEstateAgentJsonLd } from '@/lib/jsonld';
 
@@ -88,6 +89,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--text)] antialiased">
+        <SplashScreen />
         <Navbar settings={settings} />
         <main className="flex-1">
           {children}
