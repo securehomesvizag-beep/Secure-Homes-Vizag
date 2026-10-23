@@ -32,8 +32,14 @@ export function LeadCaptureForm({
     e.preventDefault();
     setErrorMessage(null);
 
-    // Validate 10-digit Indian phone
-    const cleanPhone = phone.replace(/\D/g, '');
+    // Validate 10-digit Indian phone (stripping leading +91 or 0 if provided)
+    let cleanPhone = phone.replace(/\D/g, '');
+    if (cleanPhone.length === 12 && cleanPhone.startsWith('91')) {
+      cleanPhone = cleanPhone.substring(2);
+    } else if (cleanPhone.length === 11 && cleanPhone.startsWith('0')) {
+      cleanPhone = cleanPhone.substring(1);
+    }
+
     if (cleanPhone.length !== 10) {
       setErrorMessage('Please enter a valid 10-digit mobile number.');
       return;

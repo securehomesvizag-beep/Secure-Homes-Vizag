@@ -4,6 +4,9 @@ import { getLeadsForAdmin } from '@/lib/data';
 import { LEAD_SOURCE_LABELS, LEAD_STATUS_LABELS } from '@/lib/types';
 import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function AdminDashboardPage() {
   const leads = await getLeadsForAdmin();
 

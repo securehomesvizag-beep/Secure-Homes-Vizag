@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Lead, LeadSource, LeadStatus, LEAD_SOURCE_LABELS, LEAD_STATUS_LABELS } from '@/lib/types';
-import { Phone, WhatsappLogo, DownloadSimple } from '@phosphor-icons/react';
+import { Phone, WhatsappLogo, DownloadSimple, ArrowClockwise } from '@phosphor-icons/react';
 
 interface LeadsTableProps {
   initialLeads: Lead[];
@@ -15,6 +15,28 @@ export function LeadsTable({ initialLeads }: LeadsTableProps) {
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const [editingNotesId, setEditingNotesId] = useState<string | null>(null);
   const [notesDraft, setNotesDraft] = useState<string>('');
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  useEffect(() => {
+    setLeads(initialLeads);
+  }, [initialLeads]);
+
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      const res = await fetch('/api/admin/leads', { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          setLeads(data);
+        }
+      }
+    } catch {
+      // Ignore
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
 
   const filteredLeads = leads.filter((lead) => {
     if (statusFilter !== 'all' && lead.status !== statusFilter) return false;
@@ -107,8 +129,18 @@ export function LeadsTable({ initialLeads }: LeadsTableProps) {
           </div>
         </div>
 
-        {/* CSV Export Button */}
-        <div>
+        {/* Action Buttons: Refresh & CSV Export */}
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={handleRefresh}
+            disabled={isRefreshing}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2.5 text-sm font-semibold text-[var(--ink)] bg-[var(--surface)] border border-[var(--line)] rounded-[4px] hover:border-[var(--brand)] hover:text-[var(--brand)] min-h-[44px] cursor-pointer transition-colors"
+            title="Refresh Leads"
+          >
+            <ArrowClockwise size={18} weight="regular" className={isRefreshing ? 'animate-spin' : ''} />
+            <span>{isRefreshing ? 'Refreshing...' : 'Refresh'}</span>
+          </button>
           <a
             href="/api/admin/csv"
             download

@@ -1,6 +1,8 @@
 import { Listing, Lead, Testimonial, SiteSettings, PropertyType } from './types';
 import { createClient as createServerSupabase } from './supabase/server';
 import { createAdminClient } from './supabase/admin';
+import fs from 'fs';
+import path from 'path';
 
 // Initial demo seed listings (one per property type)
 export const DEMO_LISTINGS: Listing[] = [
@@ -293,14 +295,52 @@ export async function getAllTestimonialsForAdmin(): Promise<Testimonial[]> {
   return store.__testimonials_store || [];
 }
 
+function getLocalLeads(): Lead[] {
+  try {
+    const filePath = path.join(process.cwd(), 'data', 'leads.json');
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf-8');
+      if (content.trim()) {
+        const parsed = JSON.parse(content);
+        if (Array.isArray(parsed)) {
+          return parsed;
+        }
+      }
+    }
+  } catch {
+    // Ignore error
+  }
+  return store.__leads_store || [];
+}
+
+function saveLocalLeads(leads: Lead[]) {
+  try {
+    const dirPath = path.join(process.cwd(), 'data');
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+    }
+    const filePath = path.join(dirPath, 'leads.json');
+    fs.writeFileSync(filePath, JSON.stringify(leads, null, 2), 'utf-8');
+  } catch {
+    // Ignore error
+  }
+  store.__leads_store = leads;
+}
+
 export async function insertLead(lead: Omit<Lead, 'id' | 'created_at' | 'status'>): Promise<Lead> {
   const newLead: Lead = {
     ...lead,
-    id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`,
+    id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
     status: 'new',
     created_at: new Date().toISOString(),
   };
 
+  // 1. Always persist locally so lead is NEVER lost
+  const localLeads = getLocalLeads();
+  const updatedLeads = [newLead, ...localLeads.filter(l => l.id !== newLead.id)];
+  saveLocalLeads(updatedLeads);
+
+  // 2. Also sync to Supabase
   const adminClient = createAdminClient();
   if (adminClient) {
     try {
@@ -313,25 +353,69 @@ export async function insertLead(lead: Omit<Lead, 'id' | 'created_at' | 'status'
     }
   }
 
-  if (!store.__leads_store) {
-    store.__leads_store = [];
-  }
-  store.__leads_store.unshift(newLead);
   return newLead;
 }
 
 export async function getLeadsForAdmin(): Promise<Lead[]> {
+  const localLeads = getLocalLeads();
+  let supabaseLeads: Lead[] = [];
+
   const adminClient = createAdminClient();
   if (adminClient) {
     try {
       const { data, error } = await adminClient.from('leads').select('*').order('created_at', { ascending: false });
-      if (!error && data) {
-        return data as Lead[];
+      if (!error && data && Array.isArray(data)) {
+        supabaseLeads = data as Lead[];
       }
     } catch {
       // Fallback
     }
   }
 
-  return store.__leads_store || [];
+  // Merge leads by id
+  const map = new Map<string, Lead>();
+  for (const l of supabaseLeads) {
+    if (l && l.id) map.set(l.id, l);
+  }
+  for (const l of localLeads) {
+    if (l && l.id && !map.has(l.id)) {
+      map.set(l.id, l);
+    }
+  }
+
+  const merged = Array.from(map.values()).sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  );
+
+  // Keep local store in sync
+  if (merged.length > 0) {
+    saveLocalLeads(merged);
+  }
+
+  return merged;
+}
+
+export async function updateLeadForAdmin(id: string, updates: Partial<Pick<Lead, 'status' | 'notes'>>): Promise<Lead | null> {
+  let updatedLead: Lead | null = null;
+  const adminClient = createAdminClient();
+  if (adminClient) {
+    try {
+      const { data, error } = await adminClient.from('leads').update(updates).eq('id', id).select().single();
+      if (!error && data) {
+        updatedLead = data as Lead;
+      }
+    } catch {
+      // Ignore
+    }
+  }
+
+  const localLeads = getLocalLeads();
+  const index = localLeads.findIndex(l => l.id === id);
+  if (index !== -1) {
+    localLeads[index] = { ...localLeads[index], ...updates };
+    saveLocalLeads(localLeads);
+    if (!updatedLead) updatedLead = localLeads[index];
+  }
+
+  return updatedLead;
 }
