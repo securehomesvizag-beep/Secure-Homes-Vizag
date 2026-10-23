@@ -1,16 +1,41 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { getBreadcrumbJsonLd } from '@/lib/jsonld';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.securehomevizag.com';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | Secure Home Vizag',
+  title: 'Terms of Service | Secure Home Vizag — Real Estate Advisory in Visakhapatnam',
   description:
-    'Terms of Service for Secure Home Vizag governing property advisory, website use, documentation checks, and buyer responsibilities in Visakhapatnam.',
+    'Terms of Service governing property advisory, website use, listing accuracy, site visits, and buyer responsibilities for Secure Home Vizag, operated by Rajesh Ponnada in Visakhapatnam, Andhra Pradesh.',
+  alternates: {
+    canonical: `${SITE_URL}/terms`,
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function TermsPage() {
+  const breadcrumbJsonLd = getBreadcrumbJsonLd(SITE_URL, [
+    { name: 'Home', url: '/' },
+    { name: 'Terms of Service', url: '/terms' },
+  ]);
+
   return (
     <div className="fade-in max-w-[900px] mx-auto px-4 sm:px-6 py-12 md:py-16 space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
+      {/* Breadcrumb */}
+      <nav aria-label="Breadcrumb" className="text-sm text-[var(--text)]">
+        <ol className="flex items-center gap-1.5 flex-wrap">
+          <li><Link href="/" className="hover:text-[var(--brand)] hover:underline">Home</Link></li>
+          <li aria-hidden="true" className="text-[var(--line)]">/</li>
+          <li aria-current="page" className="text-[var(--ink)] font-semibold">Terms of Service</li>
+        </ol>
+      </nav>
       <div>
         <h1 className="font-heading text-3xl md:text-5xl text-[var(--ink)] mb-3">
           Terms of Service

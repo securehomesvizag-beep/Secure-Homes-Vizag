@@ -128,6 +128,25 @@ export function Footer({ settings }: FooterProps) {
           </div>
         </div>
 
+        {/* Localities & High-Intent Search Bar */}
+        <div className="py-6 border-b border-[#233355] text-xs text-[#E7E0D5] space-y-2">
+          <p className="font-semibold uppercase tracking-wider text-[#FAF7F2]">
+            Top Real Estate Areas in Visakhapatnam (Vizag)
+          </p>
+          <p className="leading-relaxed">
+            <Link href="/listings?type=plots" className="hover:text-[var(--brand)] underline">Plots in Anandapuram</Link> •{' '}
+            <Link href="/listings?type=flats" className="hover:text-[var(--brand)] underline">Flats in Madhurawada</Link> •{' '}
+            <Link href="/listings?type=villas" className="hover:text-[var(--brand)] underline">Villas in Bheemili</Link> •{' '}
+            <Link href="/listings?type=flats" className="hover:text-[var(--brand)] underline">Apartments in Rushikonda</Link> •{' '}
+            <Link href="/listings?type=flats" className="hover:text-[var(--brand)] underline">Flats in Yendada</Link> •{' '}
+            <Link href="/listings?type=plots" className="hover:text-[var(--brand)] underline">Land in Pendurthi</Link> •{' '}
+            <Link href="/listings?type=commercial" className="hover:text-[var(--brand)] underline">Commercial in Gajuwaka</Link> •{' '}
+            <Link href="/listings?type=flats" className="hover:text-[var(--brand)] underline">Properties in MVP Colony</Link> •{' '}
+            <Link href="/listings?type=plots" className="hover:text-[var(--brand)] underline">Plots in Sujatha Nagar</Link> •{' '}
+            <Link href="/listings?type=villas" className="hover:text-[var(--brand)] underline">Coastal Villas on Beach Road</Link>
+          </p>
+        </div>
+
         {/* Bottom copyright and legal line */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#E7E0D5] gap-4">
           <p>&copy; {new Date().getFullYear()} Secure Home Vizag. All rights reserved.</p>

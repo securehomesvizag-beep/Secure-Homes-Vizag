@@ -1,16 +1,41 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { getBreadcrumbJsonLd } from '@/lib/jsonld';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.securehomevizag.com';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Secure Home Vizag',
+  title: 'Privacy Policy | Secure Home Vizag — Visakhapatnam Real Estate',
   description:
-    'Privacy Policy for Secure Home Vizag outlining what data is collected, how it is used for property enquiries, data retention, and your rights.',
+    'Privacy Policy for Secure Home Vizag. Learn what personal data is collected when you enquire about properties in Visakhapatnam, how it is used, retained, and how to request deletion.',
+  alternates: {
+    canonical: `${SITE_URL}/privacy`,
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function PrivacyPolicyPage() {
+  const breadcrumbJsonLd = getBreadcrumbJsonLd(SITE_URL, [
+    { name: 'Home', url: '/' },
+    { name: 'Privacy Policy', url: '/privacy' },
+  ]);
+
   return (
     <div className="fade-in max-w-[900px] mx-auto px-4 sm:px-6 py-12 md:py-16 space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
+      {/* Breadcrumb */}
+      <nav aria-label="Breadcrumb" className="text-sm text-[var(--text)]">
+        <ol className="flex items-center gap-1.5 flex-wrap">
+          <li><Link href="/" className="hover:text-[var(--brand)] hover:underline">Home</Link></li>
+          <li aria-hidden="true" className="text-[var(--line)]">/</li>
+          <li aria-current="page" className="text-[var(--ink)] font-semibold">Privacy Policy</li>
+        </ol>
+      </nav>
       <div>
         <h1 className="font-heading text-3xl md:text-5xl text-[var(--ink)] mb-3">
           Privacy Policy

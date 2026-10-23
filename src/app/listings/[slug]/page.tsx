@@ -7,8 +7,10 @@ import { getListingBySlug, getSettings } from '@/lib/data';
 import { PROPERTY_TYPE_LABELS, LISTING_STATUS_LABELS } from '@/lib/types';
 import { LeadActionButtons } from '@/components/lead-action-buttons';
 import { LeadCaptureForm } from '@/components/lead-capture-form';
-import { getListingJsonLd } from '@/lib/jsonld';
+import { getListingJsonLd, getBreadcrumbJsonLd } from '@/lib/jsonld';
 import { ArrowLeft } from '@phosphor-icons/react/dist/ssr';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.securehomevizag.com';
 
 interface ListingPageProps {
   params: Promise<{ slug: string }>;
@@ -23,17 +25,50 @@ export async function generateMetadata({ params }: ListingPageProps): Promise<Me
 
   if (!listing) {
     return {
-      title: 'Listing Not Found',
+      title: 'Listing Not Found | Secure Home Vizag',
+      robots: { index: false, follow: false },
     };
   }
 
+  const approvalTags = [
+    listing.is_vmrda_approved ? 'VMRDA Approved' : '',
+    listing.is_rera_approved ? 'RERA Approved' : '',
+  ]
+    .filter(Boolean)
+    .join(' & ');
+
+  const descriptionParts = [
+    `${listing.title} in ${listing.location}, Visakhapatnam.`,
+    `${listing.size} ${listing.unit}`,
+    listing.price_display ? `— ${listing.price_display}` : '',
+    approvalTags ? `${approvalTags}.` : 'Clear title verified.',
+    'Direct broker guidance from Rajesh Ponnada at Secure Home Vizag.',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const ogImages = listing.cover_image_url
+    ? [{ url: listing.cover_image_url, width: 1200, height: 630, alt: listing.title }]
+    : [{ url: '/brand/og-image.jpg', width: 1200, height: 630 }];
+
   return {
-    title: `${listing.title} | Secure Home Vizag`,
-    description: `${listing.title} located at ${listing.location}. Size: ${listing.size} ${listing.unit}. Verified by Secure Home Vizag.`,
+    title: `${listing.title} in ${listing.location} | Secure Home Vizag`,
+    description: descriptionParts,
+    alternates: {
+      canonical: `${SITE_URL}/listings/${listing.slug}`,
+    },
     openGraph: {
-      title: listing.title,
-      description: listing.description,
-      images: [listing.cover_image_url],
+      title: `${listing.title} — ${listing.location}`,
+      description: descriptionParts,
+      url: `${SITE_URL}/listings/${listing.slug}`,
+      type: 'website',
+      images: ogImages,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${listing.title} — ${listing.location}`,
+      description: descriptionParts,
+      images: ogImages.map((img) => img.url),
     },
   };
 }
@@ -49,8 +84,14 @@ export default async function ListingDetailPage({ params }: ListingPageProps) {
     notFound();
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const siteUrl = SITE_URL;
   const jsonLd = getListingJsonLd(listing, siteUrl);
+  const breadcrumbJsonLd = getBreadcrumbJsonLd(siteUrl, [
+    { name: 'Home', url: '/' },
+    { name: 'Listings', url: '/listings' },
+    { name: PROPERTY_TYPE_LABELS[listing.property_type], url: `/listings?type=${listing.property_type}` },
+    { name: listing.title, url: `/listings/${listing.slug}` },
+  ]);
 
   const images = listing.images && listing.images.length > 0
     ? listing.images
@@ -63,17 +104,34 @@ export default async function ListingDetailPage({ params }: ListingPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
 
-      {/* Back Link */}
-      <div className="mb-6">
-        <Link
-          href={`/listings?type=${listing.property_type}`}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--ink)] hover:text-[var(--brand)]"
-        >
-          <ArrowLeft size={18} weight="regular" />
-          <span>Back to {PROPERTY_TYPE_LABELS[listing.property_type]}</span>
-        </Link>
-      </div>
+      {/* Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" className="text-sm text-[var(--text)] mb-6">
+        <ol className="flex items-center gap-1.5 flex-wrap">
+          <li>
+            <Link href="/" className="hover:text-[var(--brand)] hover:underline">Home</Link>
+          </li>
+          <li aria-hidden="true" className="text-[var(--line)]">/</li>
+          <li>
+            <Link href="/listings" className="hover:text-[var(--brand)] hover:underline">Listings</Link>
+          </li>
+          <li aria-hidden="true" className="text-[var(--line)]">/</li>
+          <li>
+            <Link href={`/listings?type=${listing.property_type}`} className="hover:text-[var(--brand)] hover:underline">
+              {PROPERTY_TYPE_LABELS[listing.property_type]}
+            </Link>
+          </li>
+          <li aria-hidden="true" className="text-[var(--line)]">/</li>
+          <li aria-current="page" className="text-[var(--ink)] font-semibold truncate max-w-[180px]">
+            {listing.title}
+          </li>
+        </ol>
+      </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Main Details (8 cols) */}
@@ -83,9 +141,11 @@ export default async function ListingDetailPage({ params }: ListingPageProps) {
             <div className="relative w-full h-[320px] sm:h-[450px] bg-[var(--line)] border border-[var(--line)] rounded-[4px] overflow-hidden">
               <Image
                 src={images[0]}
-                alt={listing.title}
+                alt={`${listing.title} — ${listing.location}, Visakhapatnam`}
                 fill
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 1024px) 100vw, 66vw"
                 className="object-cover"
               />
             </div>
@@ -98,8 +158,9 @@ export default async function ListingDetailPage({ params }: ListingPageProps) {
                   >
                     <Image
                       src={img}
-                      alt={`${listing.title} preview ${idx + 2}`}
+                      alt={`${listing.title} — additional view ${idx + 2}`}
                       fill
+                      sizes="(max-width: 768px) 33vw, 200px"
                       className="object-cover"
                     />
                   </div>
