@@ -9,7 +9,6 @@ export function getRealEstateAgentJsonLd(settings: SiteSettings, siteUrl: string
     description: 'Verified plots, flats and villas in Visakhapatnam. Transparent and reliable real estate brokerage with 10+ years of local experience.',
     url: siteUrl,
     telephone: `+91${settings.phone}`,
-    priceRange: 'INR 25,00,000 to INR 3,00,00,000',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Visakhapatnam',
@@ -39,8 +38,6 @@ export function getListingJsonLd(listing: Listing, siteUrl: string) {
     datePosted: listing.created_at,
     offers: {
       '@type': 'Offer',
-      price: listing.price,
-      priceCurrency: 'INR',
       availability: listing.status === 'sold' ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock',
     },
     spatialCoverage: {

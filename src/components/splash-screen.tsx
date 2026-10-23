@@ -163,7 +163,7 @@ export function SplashScreen() {
           <span className="text-[#E7E0D5]">•</span>
           <span className="flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]" />
-            Direct Pricing
+            Verified Titles
           </span>
         </div>
       </div>

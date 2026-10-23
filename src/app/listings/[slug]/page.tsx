@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: ListingPageProps): Promise<Me
 
   return {
     title: `${listing.title} | Secure Home Vizag`,
-    description: `${listing.title} located at ${listing.location}. Size: ${listing.size} ${listing.unit}. Price: ${listing.price_display}. Verified by Secure Home Vizag.`,
+    description: `${listing.title} located at ${listing.location}. Size: ${listing.size} ${listing.unit}. Verified by Secure Home Vizag.`,
     openGraph: {
       title: listing.title,
       description: listing.description,
@@ -126,16 +126,9 @@ export default async function ListingDetailPage({ params }: ListingPageProps) {
               )}
             </div>
 
-            <h1 className="font-heading text-3xl sm:text-4xl text-[var(--ink)] mb-3">
+            <h1 className="font-heading text-3xl sm:text-4xl text-[var(--ink)]">
               {listing.title}
             </h1>
-
-            <div className="flex items-baseline gap-2 pt-1">
-              <span className="text-sm uppercase tracking-wider text-[var(--text)]">Price:</span>
-              <span className="font-heading text-3xl font-semibold text-[var(--brand)]">
-                {listing.price_display}
-              </span>
-            </div>
           </div>
 
           {/* Two-Column Facts Table */}

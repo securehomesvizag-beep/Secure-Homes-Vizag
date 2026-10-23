@@ -44,10 +44,10 @@ export default function TermsPage() {
 
         <section className="space-y-3">
           <h2 className="font-heading text-xl text-[var(--ink)]">
-            3. Pricing and Written Transparency
+            3. Transparency and Written Documentation
           </h2>
           <p>
-            Property rates displayed on this website or communicated by Rajesh Ponnada are shared transparently and in writing. Prices for plots are typically calculated on a per-square-yard basis, while apartments are priced per-square-foot. Final agreed pricing and statutory registration duties, stamp duties, and legal documentation fees are mutually confirmed prior to signing.
+            Property details and layout approvals communicated by Rajesh Ponnada are shared transparently and in writing. Statutory registration duties, stamp duties, and legal documentation fees are mutually confirmed prior to signing.
           </p>
         </section>
 

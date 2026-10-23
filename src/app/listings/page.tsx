@@ -9,7 +9,7 @@ import { WhatsappLogo } from '@phosphor-icons/react/dist/ssr';
 export const metadata: Metadata = {
   title: 'Property Listings in Visakhapatnam',
   description:
-    'Browse verified plots, flats, villas, and commercial spaces in Visakhapatnam. VMRDA and RERA approved options with direct pricing.',
+    'Browse verified plots, flats, villas, and commercial spaces in Visakhapatnam. VMRDA and RERA approved options with direct broker guidance.',
 };
 
 const TAB_TYPES: PropertyType[] = ['plots', 'flats', 'villas', 'commercial'];

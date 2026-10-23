@@ -81,14 +81,11 @@ export function ListingRowCard({ listing }: ListingRowCardProps) {
           </p>
         </div>
 
-        {/* Footer: Price and CTA buttons */}
+        {/* Footer: Verified badge and CTA buttons */}
         <div className="pt-3 border-t border-[var(--line)] flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <span className="block text-xs uppercase tracking-wider text-[var(--text)]">
-              Expected Price
-            </span>
-            <span className="font-heading text-2xl font-semibold text-[var(--brand)]">
-              {listing.price_display}
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-[#eaf4ef] text-[var(--success)] border border-[#bcdbc9]">
+              Verified Listing
             </span>
           </div>
 

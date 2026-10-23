@@ -13,7 +13,7 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
   const [instagramUrl, setInstagramUrl] = useState(initialSettings.instagram_url || 'https://www.instagram.com/securehomevizag');
   const [youtubeUrl, setYoutubeUrl] = useState(initialSettings.youtube_url || 'https://youtube.com/@securehomevizag');
   const [heroHeading, setHeroHeading] = useState(initialSettings.hero_heading || 'Verified plots, flats and villas in Visakhapatnam');
-  const [heroSubheading, setHeroSubheading] = useState(initialSettings.hero_subheading || 'Direct broker guidance with verified title records, clear pricing, and no hidden charges.');
+  const [heroSubheading, setHeroSubheading] = useState(initialSettings.hero_subheading || 'Direct broker guidance with verified title records, transparent documentation, and no hidden charges.');
   const [officeAddress, setOfficeAddress] = useState(initialSettings.office_address || '');
   const [workingHours, setWorkingHours] = useState(initialSettings.working_hours || 'Monday to Saturday: 9:00 AM to 7:00 PM');
   const [plotsDescription, setPlotsDescription] = useState(

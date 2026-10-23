@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: '%s | Secure Home Vizag',
   },
   description:
-    'Transparent and reliable real estate brokerage in Visakhapatnam. 10+ years local experience in plots, apartments, villas, and commercial properties. Direct pricing in writing.',
+    'Transparent and reliable real estate brokerage in Visakhapatnam. 10+ years local experience in plots, apartments, villas, and commercial properties. Clear titles and verified paperwork.',
   keywords: [
     'Vizag real estate',
     'plots in Visakhapatnam',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Secure Home Vizag | Verified Plots, Flats and Villas in Visakhapatnam',
     description:
-      'Transparent and reliable real estate brokerage in Visakhapatnam with 10+ years experience. Direct pricing in writing.',
+      'Transparent and reliable real estate brokerage in Visakhapatnam with 10+ years experience. Clear titles and verified paperwork.',
     url: '/',
     siteName: 'Secure Home Vizag',
     locale: 'en_IN',

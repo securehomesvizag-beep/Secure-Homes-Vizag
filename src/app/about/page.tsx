@@ -36,9 +36,9 @@ export default async function AboutPage() {
     },
     {
       step: '04',
-      title: 'Direct Price Agreement in Writing',
+      title: 'Direct Agreement in Writing',
       description:
-        'All pricing is agreed directly with clear payment milestones written down. No surprise broker fees or concealed commissions.',
+        'All agreements are documented directly with clear milestone terms written down. No surprise broker fees or concealed commissions.',
     },
     {
       step: '05',

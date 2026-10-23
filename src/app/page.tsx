@@ -54,8 +54,8 @@ export default async function HomePage() {
     },
     {
       num: '02',
-      title: 'Fixed prices shared in writing',
-      body: 'No inflated starting quotes. We provide clear per-square-yard or per-square-foot breakdown in writing before you visit any property.',
+      title: 'Direct transparency in writing',
+      body: 'No inflated claims or surprises. We provide complete document checklists and layout verification in writing before you visit any property.',
     },
     {
       num: '03',
@@ -110,7 +110,7 @@ export default async function HomePage() {
       <section className="bg-[var(--surface)] border-b border-[var(--line)] py-4">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 text-center">
           <p className="text-sm md:text-base font-semibold text-[var(--ink)]">
-            10+ years in Vizag real estate. VMRDA and RERA approved options. Prices shared in writing.
+            10+ years in Vizag real estate. VMRDA and RERA approved options. Direct broker guidance.
           </p>
         </div>
       </section>
@@ -201,7 +201,7 @@ export default async function HomePage() {
                 Why Choose Secure Home Vizag
               </h2>
               <p className="text-[var(--text)] text-base md:text-lg leading-relaxed">
-                Direct advisory from an established local broker. Clear paperwork, verified approvals, and upfront pricing.
+                Direct advisory from an established local broker. Clear paperwork, verified approvals, and direct guidance.
               </p>
             </div>
 
@@ -249,7 +249,7 @@ export default async function HomePage() {
                 Rajesh Ponnada
               </h2>
               <p className="text-base md:text-lg text-[var(--text)] leading-relaxed">
-                Over the past 10+ years, I have worked with homebuyers, families, and NRIs seeking transparent property transactions in Visakhapatnam. My approach is straightforward: verify title records, provide pricing in writing, and guide you through registration without intermediaries.
+                Over the past 10+ years, I have worked with homebuyers, families, and NRIs seeking transparent property transactions in Visakhapatnam. My approach is straightforward: verify title records, provide verified details in writing, and guide you through registration without intermediaries.
               </p>
               <div className="pt-2">
                 <Link
@@ -346,7 +346,7 @@ export default async function HomePage() {
                 Send an Enquiry
               </h2>
               <p className="text-sm md:text-base text-[#E7E0D5]">
-                Leave your details below. Rajesh Ponnada will respond with verified property options and pricing.
+                Leave your details below. Rajesh Ponnada will respond directly with verified property options and documentation.
               </p>
             </div>
             <div className="bg-[#172544] p-6 sm:p-8 border border-[#233355] rounded-[4px]">

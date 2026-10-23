@@ -55,7 +55,7 @@ export default function PrivacyPolicyPage() {
           <p>The information is used strictly to:</p>
           <ul className="list-disc pl-6 space-y-2">
             <li>Connect you directly with Rajesh Ponnada regarding the specific property you inquired about.</li>
-            <li>Provide clear link documents, pricing details, and arrange verified on-ground site inspections in Visakhapatnam.</li>
+            <li>Provide clear link documents, property details, and arrange verified on-ground site inspections in Visakhapatnam.</li>
             <li>Maintain an internal log of buyer requirements to suggest suitable new layout launches.</li>
           </ul>
           <p>We do not sell, rent, or lease your contact information to third-party telemarketers or advertisers.</p>
