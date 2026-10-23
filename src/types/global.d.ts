@@ -241,6 +241,7 @@ declare module '@phosphor-icons/react' {
   export const SignOut: Icon;
   export const ArrowUpRight: Icon;
   export const Check: Icon;
+  export const CheckCircle: Icon;
   export const Trash: Icon;
   export const PencilSimple: Icon;
   export const Plus: Icon;

@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { getListings } from '@/lib/data';
 import { PropertyType, PROPERTY_TYPE_LABELS } from '@/lib/types';
 import { ListingRowCard } from '@/components/listing-row-card';
-import { WhatsappLogo, ArrowUpRight, ShieldCheck, MapPin, CheckCircle } from '@phosphor-icons/react/dist/ssr';
+import { WhatsappLogo, ArrowUpRight, ShieldCheck, MapPin } from '@phosphor-icons/react/dist/ssr';
 import { getBreadcrumbJsonLd, getListingsItemListJsonLd, getFaqJsonLd } from '@/lib/jsonld';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.securehomevizag.com';
