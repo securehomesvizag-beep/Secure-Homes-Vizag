@@ -124,6 +124,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   flats_description: 'Ready-to-move and under-construction 2 & 3 BHK luxury apartments with approved plans and quality amenities.',
   villas_description: 'Independent duplex houses and premium gated community coastal villas with private road and modern infrastructure.',
   commercial_description: 'High-visibility retail shops, prime highway commercial plots, and office spaces with direct road access.',
+  youtube_short_id: 'MROPRKsjd-Q',
 };
 
 // Global in-memory fallback store using globalThis

@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight, InstagramLogo, YoutubeLogo } from '@phosphor-icons/react/dist/ssr';
+import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
 import { getFeaturedListings, getSettings, getTestimonials } from '@/lib/data';
 import { LeadActionButtons } from '@/components/lead-action-buttons';
 import { ListingRowCard } from '@/components/listing-row-card';
 import { LeadCaptureForm } from '@/components/lead-capture-form';
+import { SocialVideoSection } from '@/components/social-video-section';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -292,50 +293,8 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* 8. Social Strip: Two plain rows linking to Instagram and YouTube */}
-      <section className="py-12 border-b border-[var(--line)]">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <a
-              href={settings.instagram_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-5 border border-[var(--line)] bg-[var(--surface)] rounded-[4px] flex items-center justify-between hover:border-[var(--brand)] transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <InstagramLogo size={24} weight="regular" className="text-[var(--ink)]" />
-                <div>
-                  <p className="font-semibold text-base text-[var(--ink)]">Instagram</p>
-                  <p className="text-sm text-[var(--text)]">@securehomevizag</p>
-                </div>
-              </div>
-              <span className="text-sm font-semibold text-[var(--brand)] underline flex items-center gap-1">
-                <span>Open Instagram</span>
-                <ArrowUpRight size={18} weight="regular" />
-              </span>
-            </a>
-
-            <a
-              href={settings.youtube_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-5 border border-[var(--line)] bg-[var(--surface)] rounded-[4px] flex items-center justify-between hover:border-[var(--brand)] transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <YoutubeLogo size={24} weight="regular" className="text-[var(--ink)]" />
-                <div>
-                  <p className="font-semibold text-base text-[var(--ink)]">YouTube</p>
-                  <p className="text-sm text-[var(--text)]">@securehomevizag</p>
-                </div>
-              </div>
-              <span className="text-sm font-semibold text-[var(--brand)] underline flex items-center gap-1">
-                <span>Open YouTube</span>
-                <ArrowUpRight size={18} weight="regular" />
-              </span>
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* 8. Optimized Social Video & Channel Showcase */}
+      <SocialVideoSection settings={settings} />
 
       {/* 9. Enquiry form section (Navy background, flat) */}
       <section className="bg-[var(--ink)] text-[#FAF7F2] py-16 md:py-24">

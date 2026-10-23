@@ -28,6 +28,9 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
   const [commercialDescription, setCommercialDescription] = useState(
     initialSettings.commercial_description || 'High-visibility retail shops, prime highway commercial plots, and office spaces with direct road access.'
   );
+  const [youtubeShortId, setYoutubeShortId] = useState(
+    initialSettings.youtube_short_id || 'MROPRKsjd-Q'
+  );
 
   const [saving, setSaving] = useState(false);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
@@ -40,6 +43,15 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
     setErrorMsg(null);
 
     try {
+      // Helper to extract clean youtube ID if user pasted full URL
+      let cleanVideoId = youtubeShortId.trim();
+      const shortsMatch = cleanVideoId.match(/\/shorts\/([a-zA-Z0-9_-]+)/);
+      const watchMatch = cleanVideoId.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+      const beMatch = cleanVideoId.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+      if (shortsMatch) cleanVideoId = shortsMatch[1];
+      else if (watchMatch) cleanVideoId = watchMatch[1];
+      else if (beMatch) cleanVideoId = beMatch[1];
+
       const res = await fetch('/api/admin/settings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -49,6 +61,7 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
           whatsapp_link: `https://wa.me/91${whatsappNumber}`,
           instagram_url: instagramUrl,
           youtube_url: youtubeUrl,
+          youtube_short_id: cleanVideoId,
           hero_heading: heroHeading,
           hero_subheading: heroSubheading,
           office_address: officeAddress,
@@ -153,6 +166,24 @@ export function SettingsForm({ initialSettings }: SettingsFormProps) {
           required
           value={youtubeUrl}
           onChange={(e) => setYoutubeUrl(e.target.value)}
+          className="w-full px-3.5 py-2.5 text-base bg-[var(--surface)] border border-[var(--line)] rounded-[4px] text-[var(--ink)] min-h-[44px]"
+        />
+      </div>
+
+      {/* Featured YouTube Short / Video Embed */}
+      <div>
+        <label htmlFor="setting-youtube-short" className="block text-sm font-semibold text-[var(--ink)] mb-1">
+          Featured YouTube Short or Video (ID or Full URL)
+        </label>
+        <p className="text-xs text-[var(--muted)] mb-1.5">
+          Paste a YouTube Shorts link (e.g. https://youtube.com/shorts/VIDEO_ID), watch link, or just the video ID. This will automatically play live in the home screen social media section.
+        </p>
+        <input
+          id="setting-youtube-short"
+          type="text"
+          value={youtubeShortId}
+          onChange={(e) => setYoutubeShortId(e.target.value)}
+          placeholder="e.g. QO6Q7W0nO3Y or https://youtube.com/shorts/..."
           className="w-full px-3.5 py-2.5 text-base bg-[var(--surface)] border border-[var(--line)] rounded-[4px] text-[var(--ink)] min-h-[44px]"
         />
       </div>

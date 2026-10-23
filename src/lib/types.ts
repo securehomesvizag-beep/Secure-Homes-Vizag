@@ -79,6 +79,7 @@ export interface SiteSettings {
   flats_description?: string;
   villas_description?: string;
   commercial_description?: string;
+  youtube_short_id?: string;
 }
 
 export const PROPERTY_TYPE_LABELS: Record<PropertyType, string> = {
