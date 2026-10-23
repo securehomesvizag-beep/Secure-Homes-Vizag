@@ -117,21 +117,21 @@ export function SplashScreen() {
       </button>
 
       {/* Centerpiece Showcase Card */}
-      <div className="relative z-10 flex flex-col items-center w-full max-w-[calc(100vw-32px)] sm:max-w-sm px-5 py-7 sm:px-8 sm:py-10 bg-[#FFFEFB] border border-[#E7E0D5] rounded-xl shadow-[0_12px_36px_rgba(20,33,61,0.06)] text-center mx-4">
+      <div className="relative z-10 flex flex-col items-center max-w-sm px-8 py-10 bg-[#FFFEFB] border border-[#E7E0D5] rounded-xl shadow-[0_12px_36px_rgba(20,33,61,0.06)] text-center mx-4">
         {/* Official Brand Logo */}
-        <div className="relative mb-5 sm:mb-6 flex items-center justify-center">
+        <div className="relative mb-6 flex items-center justify-center">
           <Image
             src="/brand/logo-stacked.svg"
             alt="Secure Home Vizag"
             width={220}
             height={170}
             priority
-            className="w-36 sm:w-48 h-auto object-contain transition-transform duration-500 hover:scale-105"
+            className="w-44 sm:w-48 h-auto object-contain transition-transform duration-500 hover:scale-105"
           />
         </div>
 
         {/* Tagline */}
-        <p className="text-xs sm:text-[13px] font-medium text-[#4B4F58] tracking-wide mb-5 sm:mb-6">
+        <p className="text-xs sm:text-[13px] font-medium text-[#4B4F58] tracking-wide mb-6">
           Verified Real Estate Advisory • Visakhapatnam
         </p>
 
@@ -146,21 +146,21 @@ export function SplashScreen() {
           </div>
 
           {/* Status Text & Numerical Percentage */}
-          <div className="w-full flex items-center justify-between text-[11px] text-[#4B4F58] font-medium gap-2">
-            <span className="truncate text-left text-[11px] text-[#4B4F58] flex-1">
+          <div className="w-full flex items-center justify-between text-[11px] text-[#4B4F58] font-medium">
+            <span className="truncate max-w-[190px] text-left text-[11px] text-[#4B4F58]">
               {statusText}
             </span>
-            <span className="font-semibold text-[#14213D] font-mono shrink-0">{progress}%</span>
+            <span className="font-semibold text-[#14213D] font-mono">{progress}%</span>
           </div>
         </div>
 
         {/* Quality Badges */}
-        <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-[#E7E0D5] w-full flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-[10px] font-semibold tracking-wider uppercase text-[#14213D]/70">
+        <div className="mt-6 pt-5 border-t border-[#E7E0D5] w-full flex items-center justify-center gap-4 text-[10px] font-semibold tracking-wider uppercase text-[#14213D]/70">
           <span className="flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-[#2F6B4F]" />
             100% VMRDA & RERA
           </span>
-          <span className="text-[#E7E0D5] hidden sm:inline">•</span>
+          <span className="text-[#E7E0D5]">•</span>
           <span className="flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]" />
             Direct Pricing

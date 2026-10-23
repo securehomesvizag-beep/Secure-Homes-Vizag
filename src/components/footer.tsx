@@ -130,8 +130,8 @@ export function Footer({ settings }: FooterProps) {
 
         {/* Bottom copyright and legal line */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#E7E0D5] gap-4">
-          <p className="text-center sm:text-left">&copy; {new Date().getFullYear()} Secure Home Vizag. All rights reserved.</p>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <p>&copy; {new Date().getFullYear()} Secure Home Vizag. All rights reserved.</p>
+          <div className="flex items-center gap-4">
             <Link href="/privacy" className="hover:text-[var(--brand)] underline">
               Privacy Policy
             </Link>

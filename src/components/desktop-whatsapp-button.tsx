@@ -3,19 +3,13 @@
 import React from 'react';
 import { WhatsappLogo } from '@phosphor-icons/react';
 import { SiteSettings } from '@/lib/types';
-import { useResponsive } from '@/hooks/use-responsive';
 
 interface DesktopWhatsAppButtonProps {
   settings?: SiteSettings;
 }
 
 export function DesktopWhatsAppButton({ settings }: DesktopWhatsAppButtonProps) {
-  const { isMobile, isMounted } = useResponsive();
   const whatsappLink = settings?.whatsapp_link || `https://wa.me/91${settings?.whatsapp_number || '8019928236'}`;
-
-  if (isMounted && isMobile) {
-    return null;
-  }
 
   const handleClick = async (e: React.MouseEvent) => {
     e.preventDefault();

@@ -88,11 +88,11 @@ export function LeadActionButtons({
 
   if (variant === 'hero') {
     return (
-      <div className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2 ${className}`}>
+      <div className={`flex flex-wrap items-center gap-3 pt-2 ${className}`}>
         <button
           type="button"
           onClick={handleWhatsApp}
-          className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-[var(--surface)] bg-[var(--brand)] hover:bg-[var(--brand-hover)] rounded-[4px] min-h-[44px] w-full sm:w-auto"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-[var(--surface)] bg-[var(--brand)] hover:bg-[var(--brand-hover)] rounded-[4px] min-h-[44px]"
           aria-label="Message on WhatsApp"
         >
           <WhatsappLogo size={20} weight="regular" />
@@ -101,22 +101,22 @@ export function LeadActionButtons({
         <button
           type="button"
           onClick={handleCall}
-          className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-[var(--ink)] bg-[var(--surface)] hover:bg-[var(--line)] border border-[var(--line)] rounded-[4px] min-h-[44px] w-full sm:w-auto"
-          aria-label={`Call ${phoneNumber}`}
+          className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-[var(--ink)] bg-[var(--surface)] hover:bg-[var(--line)] border border-[var(--line)] rounded-[4px] min-h-[44px]"
+          aria-label="Call 8019928236"
         >
           <Phone size={20} weight="regular" />
-          <span>Call {phoneNumber}</span>
+          <span>Call 8019928236</span>
         </button>
       </div>
     );
   }
 
   return (
-    <div className={`flex flex-wrap sm:flex-nowrap items-center gap-2 ${className}`}>
+    <div className={`flex flex-wrap items-center gap-2 ${className}`}>
       <button
         type="button"
         onClick={handleWhatsApp}
-        className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-[var(--surface)] bg-[var(--brand)] hover:bg-[var(--brand-hover)] rounded-[4px] min-h-[44px] flex-1 sm:flex-initial"
+        className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-[var(--surface)] bg-[var(--brand)] hover:bg-[var(--brand-hover)] rounded-[4px] min-h-[44px]"
         aria-label="Enquire on WhatsApp"
       >
         <WhatsappLogo size={20} weight="regular" />
