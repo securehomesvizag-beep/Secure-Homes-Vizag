@@ -40,20 +40,27 @@ export function Navbar({ settings }: NavbarProps) {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-6" aria-label="Main Navigation">
+        <nav className="hidden md:flex items-center gap-7" aria-label="Main Navigation">
           {links.map((link) => {
             const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-semibold transition-colors ${
+                className={`group relative py-2 text-sm font-semibold transition-colors duration-200 inline-flex items-center ${
                   isActive
                     ? 'text-[var(--brand)]'
                     : 'text-[var(--ink)] hover:text-[var(--brand)]'
                 }`}
               >
-                {link.label}
+                <span>{link.label}</span>
+                {/* Hover effect line indicator */}
+                <span
+                  className={`absolute bottom-0 left-0 h-[2.5px] bg-[var(--brand)] rounded-full transition-all duration-300 ease-out ${
+                    isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                  aria-hidden="true"
+                />
               </Link>
             );
           })}
@@ -91,10 +98,10 @@ export function Navbar({ settings }: NavbarProps) {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`px-3 py-2 text-base font-semibold rounded-[4px] min-h-[44px] flex items-center ${
+                  className={`px-3 py-2 text-base font-semibold rounded-[4px] min-h-[44px] flex items-center border-l-3 transition-all duration-200 ${
                     isActive
-                      ? 'bg-[var(--line)] text-[var(--brand)]'
-                      : 'text-[var(--ink)] hover:bg-[var(--line)]'
+                      ? 'bg-[var(--line)] text-[var(--brand)] border-[var(--brand)]'
+                      : 'border-transparent text-[var(--ink)] hover:bg-[var(--line)] hover:border-[var(--brand)]'
                   }`}
                 >
                   {link.label}
