@@ -104,8 +104,8 @@ export const DEMO_LISTINGS: Listing[] = [
       'Furnishing': 'Unfurnished',
       'Power': 'Commercial 3-Phase',
     },
-    cover_image_url: '/placeholders/commercial.svg',
-    images: ['/placeholders/commercial.svg'],
+    cover_image_url: '/commercial.jpg',
+    images: ['/commercial.jpg'],
     created_at: new Date().toISOString(),
   },
 ];

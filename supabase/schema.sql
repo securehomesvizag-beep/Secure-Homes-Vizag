@@ -175,7 +175,7 @@ INSERT INTO listings (
   true,
   'Main road facing commercial unit suitable for branch office, clinic, or consulting firm. Ample customer parking in front, high footfall commercial zone.',
   '{"Floor": "2nd", "Furnishing": "Unfurnished", "Power": "Commercial 3-Phase"}',
-  '/placeholders/commercial.svg'
+  '/commercial.jpg'
 )
 ON CONFLICT (slug) DO NOTHING;
 

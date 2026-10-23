@@ -143,7 +143,7 @@ export default async function HomePage() {
       title: 'Commercial Properties',
       type: 'commercial',
       description: settings.commercial_description || 'High-visibility retail shops, prime highway commercial plots, and office spaces with direct road access.',
-      image: '/placeholders/commercial.svg',
+      image: '/commercial.jpg',
       heightClass: 'h-64 sm:h-72',
     },
   ];
