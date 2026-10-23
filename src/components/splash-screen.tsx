@@ -117,17 +117,19 @@ export function SplashScreen() {
       </button>
 
       {/* Centerpiece Showcase Card */}
-      <div className="relative z-10 flex flex-col items-center max-w-sm px-8 py-10 bg-[#FFFEFB] border border-[#E7E0D5] rounded-xl shadow-[0_12px_36px_rgba(20,33,61,0.06)] text-center mx-4">
+      <div className="relative z-10 flex flex-col items-center max-w-sm px-7 py-8 sm:px-8 sm:py-9 bg-[#FFFEFB] border border-[#E7E0D5] rounded-2xl shadow-[0_16px_40px_rgba(20,33,61,0.08)] text-center mx-4">
         {/* Official Brand Logo */}
-        <div className="relative mb-6 flex items-center justify-center">
-          <Image
-            src="/brand/logo-stacked.svg"
-            alt="Secure Home Vizag"
-            width={220}
-            height={170}
-            priority
-            className="w-44 sm:w-48 h-auto object-contain transition-transform duration-500 hover:scale-105"
-          />
+        <div className="relative mb-5 flex items-center justify-center">
+          <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-xl overflow-hidden border border-[#E7E0D5] shadow-sm bg-white">
+            <Image
+              src="/brand/splash-logo.jpg"
+              alt="Secure Home Vizag — Verified Real Estate in Visakhapatnam"
+              fill
+              priority
+              sizes="(max-width: 640px) 176px, 208px"
+              className="object-cover transition-transform duration-700 hover:scale-105"
+            />
+          </div>
         </div>
 
         {/* Tagline */}
