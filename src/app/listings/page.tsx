@@ -38,7 +38,7 @@ const TYPE_META: Record<PropertyType, {
       'plots near me Vizag',
     ],
     subheading:
-      'Verified residential plots and plotted developments with clear 30-year title verification, VMRDA sanctions, and direct broker assistance in Visakhapatnam.',
+      'Verified residential plots and plotted developments with clear 30-year title verification, VMRDA sanctions, and direct guidance in Visakhapatnam.',
     overviewTitle: 'Buying Plots in Visakhapatnam: What You Need to Know',
     overviewText:
       'Visakhapatnam is witnessing rapid real estate infrastructure expansion, with prime plotted land investments focused along the Anandapuram-Srikakulam national highway corridor, Bheemunipatnam beach road, and Madhurawada hills. Secure Home Vizag validates link documents for 30 years, verifies encumbrance certificates (EC), checks local VMRDA layout approval orders (LP numbers), and marks survey boundaries physically before offering any plot.',
@@ -69,7 +69,7 @@ const TYPE_META: Record<PropertyType, {
   flats: {
     title: 'Flats in Vizag | 2 & 3 BHK Apartments for Sale in Visakhapatnam | RERA Approved',
     description:
-      'Explore verified 2 BHK & 3 BHK flats in Vizag. RERA approved luxury apartments in Madhurawada, Rushikonda, Yendada, and MVP Colony with direct broker guidance from Rajesh Ponnada.',
+      'Explore verified 2 BHK & 3 BHK flats in Vizag. RERA approved luxury apartments in Madhurawada, Rushikonda, Yendada, and MVP Colony with direct guidance from Rajesh Ponnada.',
     h1: 'Flats & Apartments for Sale in Vizag & Visakhapatnam',
     keywords: [
       'flats in Vizag',
@@ -440,7 +440,7 @@ export default async function ListingsPage({
             Frequently Asked Questions: {PROPERTY_TYPE_LABELS[currentType]} in Vizag
           </h2>
           <p className="text-sm md:text-base text-[var(--text)]">
-            Key insights, legal requirements, and market advice from local broker Rajesh Ponnada.
+            Key insights, legal requirements, and market advice from local property advisor Rajesh Ponnada.
           </p>
         </div>
 

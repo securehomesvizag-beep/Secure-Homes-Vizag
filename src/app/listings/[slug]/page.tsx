@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: ListingPageProps): Promise<Me
     `${listing.size} ${listing.unit}`,
     listing.price_display ? `— ${listing.price_display}` : '',
     approvalTags ? `${approvalTags}.` : 'Clear title verified.',
-    'Direct broker guidance from Rajesh Ponnada at Secure Home Vizag.',
+    'Direct guidance from Rajesh Ponnada at Secure Home Vizag.',
   ]
     .filter(Boolean)
     .join(' ');

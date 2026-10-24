@@ -26,7 +26,7 @@ export function getRealEstateAgentJsonLd(settings: SiteSettings, siteUrl: string
       height: 45,
     },
     description:
-      'Secure Home Vizag is a trusted real estate brokerage in Visakhapatnam (Vizag), Andhra Pradesh, offering verified plots, flats, apartments, villas, and commercial properties. Founded by Rajesh Ponnada with 10+ years of transparent property advisory, VMRDA and RERA approved listings, and complete title verification services for homebuyers, families, and NRI clients.',
+      'Secure Home Vizag is a trusted real estate consultancy in Visakhapatnam (Vizag), Andhra Pradesh, offering verified plots, flats, apartments, villas, and commercial properties. Founded by Rajesh Ponnada with 10+ years of transparent property advisory, VMRDA and RERA approved listings, and complete title verification services for homebuyers, families, and NRI clients.',
     slogan: 'Transparent and Reliable Real Estate in Visakhapatnam',
     url: siteUrl,
     telephone: `+91${settings.phone}`,
@@ -129,7 +129,7 @@ export function getRealEstateAgentJsonLd(settings: SiteSettings, siteUrl: string
       '@id': `${siteUrl}/about#rajesh-ponnada`,
       name: 'Rajesh Ponnada',
       jobTitle: 'Founder & Property Consultant',
-      description: 'Rajesh Ponnada is a trusted real estate broker based in Visakhapatnam with over 10 years of experience in transparent property advisory, title verification, and NRI property services.',
+      description: 'Rajesh Ponnada is a trusted real estate consultant based in Visakhapatnam with over 10 years of experience in transparent property advisory, title verification, and NRI property services.',
       url: `${siteUrl}/about`,
       telephone: `+91${settings.phone}`,
       worksFor: { '@type': 'Organization', name: 'Secure Home Vizag' },
@@ -257,7 +257,7 @@ export function getListingJsonLd(listing: Listing, siteUrl: string) {
       name: 'Secure Home Vizag',
       telephone: '+918019928236',
     },
-    broker: {
+    seller: {
       '@type': 'RealEstateAgent',
       '@id': `${siteUrl}/#organization`,
       name: 'Secure Home Vizag',
@@ -310,7 +310,7 @@ export function getPersonJsonLd(siteUrl: string) {
     familyName: 'Ponnada',
     jobTitle: 'Founder & Property Consultant',
     description:
-      'Rajesh Ponnada is a trusted real estate broker based in Visakhapatnam (Vizag) with over 10 years of experience assisting homebuyers, families, and NRI clients in transparent property transactions, title verification, and VMRDA/RERA approved listings across Andhra Pradesh.',
+      'Rajesh Ponnada is a trusted real estate consultant based in Visakhapatnam (Vizag) with over 10 years of experience assisting homebuyers, families, and NRI clients in transparent property transactions, title verification, and VMRDA/RERA approved listings across Andhra Pradesh.',
     url: `${siteUrl}/about`,
     image: {
       '@type': 'ImageObject',
@@ -338,7 +338,7 @@ export function getPersonJsonLd(siteUrl: string) {
     ],
     hasOccupation: {
       '@type': 'Occupation',
-      name: 'Real Estate Broker',
+      name: 'Real Estate Consultant',
       occupationLocation: {
         '@type': 'City',
         name: 'Visakhapatnam',
@@ -366,7 +366,7 @@ export function getListingsItemListJsonLd(
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: `${propertyTypeLabel} for Sale in Visakhapatnam`,
-    description: `Verified ${propertyTypeLabel.toLowerCase()} for sale in Visakhapatnam. Browse all available properties with direct broker guidance from Secure Home Vizag — Rajesh Ponnada.`,
+    description: `Verified ${propertyTypeLabel.toLowerCase()} for sale in Visakhapatnam. Browse all available properties with direct guidance from Secure Home Vizag — Rajesh Ponnada.`,
     url: `${siteUrl}/listings`,
     numberOfItems: listings.length,
     itemListElement: listings.slice(0, 10).map((listing, i) => ({

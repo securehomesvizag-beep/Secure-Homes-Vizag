@@ -13,14 +13,14 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: 'About Rajesh Ponnada | Real Estate Broker in Visakhapatnam | Secure Home Vizag',
+  title: 'About Rajesh Ponnada | Real Estate Consultant in Visakhapatnam | Secure Home Vizag',
   description:
-    'Meet Rajesh Ponnada — founder of Secure Home Vizag and an experienced property broker in Visakhapatnam with 10+ years of transparent real estate advisory for homebuyers, families, and NRI clients across Andhra Pradesh.',
+    'Meet Rajesh Ponnada — founder of Secure Home Vizag and an experienced property consultant in Visakhapatnam with 10+ years of transparent real estate advisory for homebuyers, families, and NRI clients across Andhra Pradesh.',
   alternates: {
     canonical: `${SITE_URL}/about`,
   },
   openGraph: {
-    title: 'About Rajesh Ponnada | Real Estate Broker in Visakhapatnam',
+    title: 'About Rajesh Ponnada | Real Estate Consultant in Visakhapatnam',
     description:
       'Rajesh Ponnada, founder of Secure Home Vizag, brings 10+ years of transparent real estate advisory across Visakhapatnam. Learn about the advisory process, top localities, and property verification.',
     url: `${SITE_URL}/about`,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         url: '/Rajesh%20ponnada.jpeg',
         width: 800,
         height: 600,
-        alt: 'Rajesh Ponnada — Founder of Secure Home Vizag, Real Estate Broker in Visakhapatnam',
+        alt: 'Rajesh Ponnada — Founder of Secure Home Vizag, Real Estate Consultant in Visakhapatnam',
       },
     ],
   },
@@ -116,7 +116,7 @@ export default async function AboutPage() {
       step: '04',
       title: 'Direct Agreement in Writing',
       description:
-        'All agreements are documented directly with clear milestone terms written down. No surprise broker fees or concealed commissions.',
+        'All agreements are documented directly with clear milestone terms written down. No hidden charges or concealed commissions.',
     },
     {
       step: '05',
@@ -231,7 +231,7 @@ export default async function AboutPage() {
             Top Real Estate Localities in Visakhapatnam (Vizag)
           </h2>
           <p className="text-[var(--text)] text-base max-w-3xl leading-relaxed">
-            Active brokerage, on-ground title verification, and property advisory across core municipal and VMRDA growth sectors of Visakhapatnam.
+            Active property consulting, on-ground title verification, and property advisory across core municipal and VMRDA growth sectors of Visakhapatnam.
           </p>
         </div>
 

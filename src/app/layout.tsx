@@ -28,11 +28,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.securehomeviza
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Secure Home Vizag | #1 Real Estate Broker — Verified Plots, Flats & Villas in Visakhapatnam',
+    default: 'Secure Home Vizag | #1 Real Estate Consultant — Verified Plots, Flats & Villas in Visakhapatnam',
     template: '%s | Secure Home Vizag — Visakhapatnam Real Estate',
   },
   description:
-    'Secure Home Vizag — Visakhapatnam\'s trusted real estate broker. Find VMRDA & RERA approved plots, 2 & 3 BHK flats, coastal villas, and commercial properties across Vizag. Direct guidance from Rajesh Ponnada — 10+ years of transparent property advisory, clear title verification, and NRI property services in Andhra Pradesh.',
+    'Secure Home Vizag — Visakhapatnam\'s trusted real estate consultancy. Find VMRDA & RERA approved plots, 2 & 3 BHK flats, coastal villas, and commercial properties across Vizag. Direct guidance from Rajesh Ponnada — 10+ years of transparent property advisory, clear title verification, and NRI property services in Andhra Pradesh.',
   keywords: [
     // Primary high-intent Vizag real estate keywords
     'real estate in Vizag',
@@ -65,9 +65,10 @@ export const metadata: Metadata = {
     'commercial property Vizag',
     'commercial property Visakhapatnam',
     'commercial plots Gajuwaka',
-    // Broker and agent keywords
-    'real estate broker Vizag',
-    'property broker Visakhapatnam',
+    // Advisor and consultant keywords
+    'real estate consultant Vizag',
+    'property advisor Visakhapatnam',
+    'property consultant Vizag',
     'Rajesh Ponnada real estate',
     'Secure Home Vizag',
     'Secure Homes Vizag',
@@ -108,7 +109,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Secure Home Vizag | Verified Plots, Flats & Villas in Visakhapatnam',
     description:
-      'Visakhapatnam\'s trusted real estate broker — verified VMRDA & RERA approved plots, 2 & 3 BHK flats, coastal villas. Direct broker guidance from Rajesh Ponnada with 10+ years of local expertise. Serving Madhurawada, Bheemili, Anandapuram, Rushikonda & all of Vizag.',
+      'Visakhapatnam\'s trusted real estate consultancy — verified VMRDA & RERA approved plots, 2 & 3 BHK flats, coastal villas. Direct guidance from Rajesh Ponnada with 10+ years of local expertise. Serving Madhurawada, Bheemili, Anandapuram, Rushikonda & all of Vizag.',
     url: SITE_URL,
     siteName: 'Secure Home Vizag',
     locale: 'en_IN',
@@ -172,7 +173,7 @@ export const metadata: Metadata = {
     'og:locale:alternate:2': 'hi_IN',
     'DC.title': 'Secure Home Vizag — Real Estate in Visakhapatnam',
     'DC.subject': 'Real Estate, Property, Visakhapatnam, Vizag, Plots, Flats, Villas',
-    'DC.description': 'Verified plots, flats, villas and commercial properties in Visakhapatnam with transparent broker guidance.',
+    'DC.description': 'Verified plots, flats, villas and commercial properties in Visakhapatnam with transparent property advisory.',
     'DC.creator': 'Rajesh Ponnada',
     'DC.publisher': 'Secure Home Vizag',
     'DC.language': 'en-IN',
@@ -206,7 +207,7 @@ export default async function RootLayout({
     name: 'Secure Home Vizag',
     alternateName: ['Secure Homes Vizag', 'Secure Home Visakhapatnam'],
     url: SITE_URL,
-    description: 'Verified plots, flats, villas and commercial properties in Visakhapatnam with direct broker guidance from Rajesh Ponnada. VMRDA and RERA approved listings across all major areas of Vizag.',
+    description: 'Verified plots, flats, villas and commercial properties in Visakhapatnam with direct guidance from Rajesh Ponnada. VMRDA and RERA approved listings across all major areas of Vizag.',
     inLanguage: ['en-IN', 'te-IN'],
     isPartOf: {
       '@type': 'WebSite',
@@ -235,7 +236,7 @@ export default async function RootLayout({
     about: {
       '@type': 'Thing',
       name: 'Real Estate in Visakhapatnam',
-      description: 'Verified residential and commercial property listings in Vizag with transparent broker guidance.',
+      description: 'Verified residential and commercial property listings in Vizag with transparent property advisory.',
     },
     keywords: 'real estate Vizag, property Visakhapatnam, plots Vizag, flats Visakhapatnam, villas Vizag, VMRDA approved, RERA approved, NRI property',
   };

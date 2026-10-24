@@ -46,7 +46,7 @@ export function MobileBottomBar({ settings }: MobileBottomBarProps) {
           href={`tel:+91${phone}`}
           onClick={handleCall}
           className="flex items-center justify-center gap-2 py-3 px-2 text-sm font-semibold text-[var(--ink)] bg-[var(--bg)] border border-[var(--line)] rounded-[4px] min-h-[44px]"
-          aria-label="Call broker directly"
+          aria-label="Call directly"
         >
           <Phone size={20} weight="regular" />
           <span>Call</span>
@@ -55,7 +55,7 @@ export function MobileBottomBar({ settings }: MobileBottomBarProps) {
           href={`https://wa.me/91${whatsappNumber}`}
           onClick={handleWhatsApp}
           className="flex items-center justify-center gap-2 py-3 px-2 text-sm font-semibold text-[var(--surface)] bg-[var(--brand)] hover:bg-[var(--brand-hover)] rounded-[4px] min-h-[44px]"
-          aria-label="Message broker on WhatsApp"
+          aria-label="Message on WhatsApp"
         >
           <WhatsappLogo size={20} weight="regular" />
           <span>WhatsApp</span>

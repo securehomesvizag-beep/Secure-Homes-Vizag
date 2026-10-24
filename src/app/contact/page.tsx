@@ -87,7 +87,7 @@ export default async function ContactPage() {
           Contact Secure Home Vizag
         </h1>
         <p className="text-[var(--text)] text-base md:text-lg leading-relaxed">
-          Reach Rajesh Ponnada directly for property enquiries, title verification checks, or to arrange site visits across Visakhapatnam. No automated responses — direct broker communication.
+          Reach Rajesh Ponnada directly for property enquiries, title verification checks, or to arrange site visits across Visakhapatnam. No automated responses — direct personal communication.
         </p>
       </div>
 

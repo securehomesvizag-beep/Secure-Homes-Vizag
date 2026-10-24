@@ -117,7 +117,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   instagram_url: 'https://www.instagram.com/securehomevizag',
   youtube_url: 'https://youtube.com/@securehomevizag',
   hero_heading: 'Verified plots, flats and villas in Visakhapatnam',
-  hero_subheading: 'Direct broker guidance with verified title records, transparent documentation, and no hidden charges.',
+  hero_subheading: 'Direct guidance with verified title records, transparent documentation, and no hidden charges.',
   office_address: 'Visakhapatnam, Andhra Pradesh',
   working_hours: 'Monday to Saturday: 9:00 AM to 7:00 PM',
   plots_description: 'Clear title VMRDA & approved residential plots in high-growth corridors like Anandapuram, Bheemili & Madhurawada.',

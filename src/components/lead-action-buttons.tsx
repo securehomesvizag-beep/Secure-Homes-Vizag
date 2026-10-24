@@ -126,7 +126,7 @@ export function LeadActionButtons({
         type="button"
         onClick={handleCall}
         className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-sm font-semibold text-[var(--ink)] bg-[var(--surface)] hover:bg-[var(--line)] border border-[var(--line)] rounded-[4px] min-h-[44px]"
-        aria-label="Call broker"
+        aria-label="Call directly"
       >
         <Phone size={20} weight="regular" />
         <span>Call</span>
