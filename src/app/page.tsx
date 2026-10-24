@@ -166,7 +166,7 @@ export default async function HomePage() {
       <section className="bg-[var(--surface)] border-b border-[var(--line)] py-4">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 text-center">
           <p className="text-sm md:text-base font-semibold text-[var(--ink)]">
-            10+ years in Vizag real estate. VMRDA and RERA approved options. Direct broker guidance.
+            10+ years in Vizag real estate. VMRDA and RERA approved options. Direct Owner Contacts.
           </p>
         </div>
       </section>
