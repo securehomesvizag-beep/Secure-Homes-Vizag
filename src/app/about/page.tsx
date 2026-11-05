@@ -16,6 +16,17 @@ export const metadata: Metadata = {
   title: 'About Rajesh Ponnada | Real Estate Consultant in Visakhapatnam | Secure Home Vizag',
   description:
     'Meet Rajesh Ponnada — founder of Secure Home Vizag and an experienced property consultant in Visakhapatnam with 10+ years of transparent real estate advisory for homebuyers, families, and NRI clients across Andhra Pradesh.',
+  keywords: [
+    'Rajesh Ponnada',
+    'Rajesh Ponnada real estate',
+    'Rajesh Ponnada property consultant',
+    'real estate consultant Vizag',
+    'property advisor Visakhapatnam',
+    'Secure Home Vizag founder',
+    'best property dealer Vizag',
+    'NRI property consultant Vizag',
+    'VMRDA title verification consultant',
+  ],
   alternates: {
     canonical: `${SITE_URL}/about`,
   },
@@ -78,9 +89,9 @@ const ABOUT_FAQS = [
       'To buy a plot in Visakhapatnam, follow these steps: (1) Identify your preferred area and budget, (2) Contact Secure Home Vizag for verified VMRDA-approved plot listings, (3) Verify the 30-year title chain, encumbrance certificate, and layout sanction order, (4) Visit the site with Rajesh Ponnada, (5) Sign a written sale agreement, and (6) Complete registration at the sub-registrar office. Secure Home Vizag assists through every step.',
   },
   {
-    question: 'What is the price range for flats in Visakhapatnam?',
+    question: 'What types and configurations of flats are available in Visakhapatnam?',
     answer:
-      'Flat prices in Visakhapatnam range from approximately ₹40 lakhs for a 2 BHK apartment in developing areas like Pendurthi and Anandapuram, to ₹1 crore or more for premium 3 BHK RERA-approved apartments in Madhurawada, Rushikonda, and Yendada. Contact Secure Home Vizag for the most current verified listings and pricing across Vizag.',
+      'Visakhapatnam offers diverse residential choices ranging from modern 2 BHK apartments in developing corridors like Pendurthi and Anandapuram, to premium 3 BHK luxury gated community apartments in Madhurawada, Rushikonda, and Yendada. Contact Secure Home Vizag for verified listings and pricing on request.',
   },
 ];
 

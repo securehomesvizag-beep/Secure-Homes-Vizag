@@ -54,37 +54,47 @@ export function getRealEstateAgentJsonLd(settings: SiteSettings, siteUrl: string
         closes: '19:00',
       },
     ],
-    priceRange: '₹₹',
     currenciesAccepted: 'INR',
     paymentAccepted: 'Cash, Bank Transfer, Cheque, UPI',
     areaServed: [
       { '@type': 'City', name: 'Visakhapatnam', sameAs: 'https://en.wikipedia.org/wiki/Visakhapatnam' },
       { '@type': 'City', name: 'Vizag', sameAs: 'https://en.wikipedia.org/wiki/Visakhapatnam' },
       { '@type': 'AdministrativeArea', name: 'Andhra Pradesh', sameAs: 'https://en.wikipedia.org/wiki/Andhra_Pradesh' },
+      { '@type': 'AdministrativeArea', name: 'Visakhapatnam Metropolitan Region Development Authority (VMRDA)', sameAs: 'https://en.wikipedia.org/wiki/Visakhapatnam_Metropolitan_Region_Development_Authority' },
+      { '@type': 'AdministrativeArea', name: 'Greater Visakhapatnam Municipal Corporation (GVMC)', sameAs: 'https://en.wikipedia.org/wiki/Greater_Visakhapatnam_Municipal_Corporation' },
       { '@type': 'Neighborhood', name: 'Madhurawada, Visakhapatnam' },
       { '@type': 'Neighborhood', name: 'Rushikonda, Visakhapatnam' },
       { '@type': 'Neighborhood', name: 'Anandapuram, Visakhapatnam' },
+      { '@type': 'Neighborhood', name: 'Bhogapuram Airport Corridor, Visakhapatnam Region' },
       { '@type': 'Neighborhood', name: 'Bheemili, Visakhapatnam' },
       { '@type': 'Neighborhood', name: 'Yendada, Visakhapatnam' },
       { '@type': 'Neighborhood', name: 'MVP Colony, Visakhapatnam' },
       { '@type': 'Neighborhood', name: 'Gajuwaka, Visakhapatnam' },
       { '@type': 'Neighborhood', name: 'Pendurthi, Visakhapatnam' },
       { '@type': 'Neighborhood', name: 'Sujatha Nagar, Visakhapatnam' },
+      { '@type': 'Neighborhood', name: 'Gambhiram, Visakhapatnam' },
+      { '@type': 'Neighborhood', name: 'Kapuluppada, Visakhapatnam' },
+      { '@type': 'Neighborhood', name: 'PM Palem, Visakhapatnam' },
     ],
     knowsAbout: [
       'Residential Plots in Visakhapatnam',
       'Flats and Apartments in Vizag',
       'Villas and Independent Houses Visakhapatnam',
       'Commercial Properties in Vizag',
-      'VMRDA Approved Properties',
-      'RERA Approved Properties',
-      'Title Verification Andhra Pradesh',
-      'Property Registration Visakhapatnam',
-      'NRI Property Investment Vizag',
-      'Coastal Properties Bheemili',
-      'Anandapuram Plots',
-      'Madhurawada Flats',
-      'Real Estate Advisory Visakhapatnam',
+      'VMRDA Approved Layouts & LP Numbers',
+      'AP RERA Registered Projects',
+      'Title Verification Andhra Pradesh (30-Year Link Deeds)',
+      'AP Registration and Stamps (IGR AP) Encumbrance Certificates',
+      'Section 22A Prohibited Property Register Screening',
+      'Meebhoomi Webland 1B Adangal Verification',
+      'Non-Agricultural Land Assessment (NALA) Conversion',
+      'Property Registration & Stamp Duty Visakhapatnam',
+      'NRI Property Management & Purchase Visakhapatnam',
+      'Coastal Beach Road Properties Bheemili & Rushikonda',
+      'Bhogapuram International Airport Land Investment',
+      'Anandapuram Junction NH-16 Corridor Real Estate',
+      'Madhurawada IT SEZ Residential Developments',
+      'Real Estate Investment & Valuation Advisory Visakhapatnam',
     ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -373,7 +383,7 @@ export function getListingsItemListJsonLd(
       '@type': 'ListItem',
       position: i + 1,
       url: `${siteUrl}/listings/${listing.slug}`,
-      name: `${listing.title} in ${listing.location}${listing.price_display ? ` — ${listing.price_display}` : ''}`,
+      name: `${listing.title} in ${listing.location}`,
     })),
   };
 }
@@ -411,3 +421,71 @@ export function getServiceJsonLd(
     },
   };
 }
+
+// ─── HowTo Schema for Step-by-Step Google Rich Results ───────────────────────
+export function getHowToJsonLd(
+  siteUrl: string,
+  title: string,
+  description: string,
+  steps: Array<{ name: string; text: string; url?: string }>
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: title,
+    description: description,
+    estimatedCost: {
+      '@type': 'MonetaryAmount',
+      currency: 'INR',
+      value: '0',
+    },
+    step: steps.map((s, idx) => ({
+      '@type': 'HowToStep',
+      position: idx + 1,
+      name: s.name,
+      text: s.text,
+      url: s.url ? `${siteUrl}${s.url}` : `${siteUrl}/about`,
+    })),
+  };
+}
+
+// ─── Speakable Specification for Voice Search (Google Assistant/Gemini) ──────
+export function getSpeakableJsonLd(siteUrl: string, pageUrl: string, cssSelectors: string[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${siteUrl}${pageUrl}`,
+    url: `${siteUrl}${pageUrl}`,
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: cssSelectors,
+    },
+  };
+}
+
+// ─── WebSite Schema with Sitelinks SearchBox (Google Search Console AEO) ─────
+export function getWebsiteJsonLd(siteUrl: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${siteUrl}/#website`,
+    url: siteUrl,
+    name: 'Secure Home Vizag',
+    alternateName: ['Secure Homes Vizag', 'Secure Home Visakhapatnam Real Estate'],
+    description:
+      'Premier real estate consultancy in Visakhapatnam. Verified VMRDA approved plots, AP RERA registered flats, and luxury coastal villas.',
+    inLanguage: 'en-IN',
+    publisher: {
+      '@id': `${siteUrl}/#organization`,
+    },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteUrl}/listings?type={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+}
+

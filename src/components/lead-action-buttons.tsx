@@ -8,6 +8,7 @@ interface LeadActionButtonsProps {
   listingTitle?: string;
   variant?: 'row' | 'hero' | 'sticky' | 'card' | 'navbar';
   phoneNumber?: string;
+  phone?: string;
   whatsappNumber?: string;
   className?: string;
 }
@@ -16,10 +17,12 @@ export function LeadActionButtons({
   listingId,
   listingTitle,
   variant = 'row',
-  phoneNumber = '8019928236',
+  phoneNumber,
+  phone,
   whatsappNumber = '918019928236',
   className = '',
 }: LeadActionButtonsProps) {
+  const actualPhone = phone || phoneNumber || '8019928236';
   const [loading, setLoading] = useState<string | null>(null);
 
   const logClick = async (source: 'whatsapp_click' | 'call_click') => {
@@ -58,14 +61,14 @@ export function LeadActionButtons({
     await logClick('call_click');
     setLoading(null);
 
-    window.location.href = `tel:+91${phoneNumber}`;
+    window.location.href = `tel:+91${actualPhone}`;
   };
 
   if (variant === 'navbar') {
     return (
       <div className={`flex items-center gap-2 ${className}`}>
         <a
-          href={`tel:+91${phoneNumber}`}
+          href={`tel:+91${actualPhone}`}
           onClick={handleCall}
           className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-[var(--ink)] hover:text-[var(--brand)] border border-[var(--line)] bg-[var(--surface)] rounded-[4px] min-h-[44px]"
           aria-label="Call Secure Home Vizag"

@@ -40,7 +40,6 @@ export async function generateMetadata({ params }: ListingPageProps): Promise<Me
   const descriptionParts = [
     `${listing.title} in ${listing.location}, Visakhapatnam.`,
     `${listing.size} ${listing.unit}`,
-    listing.price_display ? `— ${listing.price_display}` : '',
     approvalTags ? `${approvalTags}.` : 'Clear title verified.',
     'Direct guidance from Rajesh Ponnada at Secure Home Vizag.',
   ]

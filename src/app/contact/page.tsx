@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   title: 'Contact Rajesh Ponnada | Property Enquiry in Visakhapatnam | Secure Home Vizag',
   description:
     'Contact Rajesh Ponnada at Secure Home Vizag directly via Phone or WhatsApp for verified property enquiries, site visits, and title checks in Visakhapatnam. Available Monday to Saturday, 9 AM to 7 PM.',
+  keywords: [
+    'contact secure home vizag',
+    'real estate agent contact number vizag',
+    'rajesh ponnada contact number',
+    'property consultant phone vizag',
+    'property site visit booking vizag',
+    'schedule land inspection visakhapatnam',
+    'whatsapp real estate agent vizag',
+  ],
   alternates: {
     canonical: `${SITE_URL}/contact`,
   },

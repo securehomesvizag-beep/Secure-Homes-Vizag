@@ -16,7 +16,7 @@ export default function robots(): MetadataRoute.Robots {
           '/static/',
         ],
       },
-      // Explicit rules for AI Search & Answer Engines (AEO / GEO)
+      // Explicit rules for AI Search, Answer Engines & LLM Crawlers (AEO / GEO / Perplexity / Gemini)
       {
         userAgent: [
           'Googlebot',
@@ -29,6 +29,7 @@ export default function robots(): MetadataRoute.Robots {
           'Applebot',
           'Applebot-Extended',
           'Google-Extended',
+          'cohere-ai',
         ],
         allow: '/',
         disallow: ['/admin', '/admin/', '/api/'],

@@ -97,9 +97,9 @@ const TYPE_META: Record<PropertyType, {
     ],
     faqs: [
       {
-        question: 'What is the average price of 2 BHK and 3 BHK flats in Vizag?',
+        question: 'What types of 2 BHK and 3 BHK flats are available in Vizag?',
         answer:
-          'A 2 BHK flat in Visakhapatnam generally ranges from ₹40 lakhs to ₹65 lakhs depending on the locality (such as Pendurthi or Madhurawada). Premium 3 BHK flats in prime areas like Rushikonda, Yendada, and MVP Colony range from ₹75 lakhs to ₹1.5+ crores for sea-view or luxury gated community developments.',
+          'Residential flats in Visakhapatnam encompass practical 2 BHK layouts in growing residential pockets to premium 3 BHK sea-view and luxury gated community developments in prime corridors like Rushikonda, Yendada, and Madhurawada. Contact Secure Home Vizag for customized options and pricing on request.',
       },
       {
         question: 'Are all flats listed on Secure Home Vizag RERA approved?',
@@ -355,6 +355,22 @@ export default async function ListingsPage({
             </Link>
           );
         })}
+      </div>
+
+      {/* Dedicated Canonical Category & Micro-Market Navigation Strip */}
+      <div className="bg-[var(--surface)] border border-[var(--line)] p-4 rounded-[4px] flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
+        <span className="font-semibold text-[var(--ink)]">Explore In-Depth Verified Guides:</span>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <Link href="/plots-in-vizag" className="text-[var(--brand)] font-medium hover:underline">Plots in Vizag</Link>
+          <span className="text-[var(--line)]">|</span>
+          <Link href="/villas-in-vizag" className="text-[var(--brand)] font-medium hover:underline">Villas in Vizag</Link>
+          <span className="text-[var(--line)]">|</span>
+          <Link href="/flats-in-vizag" className="text-[var(--brand)] font-medium hover:underline">Flats in Vizag</Link>
+          <span className="text-[var(--line)]">|</span>
+          <Link href="/commercial-property-in-vizag" className="text-[var(--brand)] font-medium hover:underline">Commercial</Link>
+          <span className="text-[var(--line)]">|</span>
+          <Link href="/real-estate-in-vizag" className="text-[var(--ink)] font-semibold hover:text-[var(--brand)] underline">Master City Guide</Link>
+        </div>
       </div>
 
       {/* Listings List or Empty State */}

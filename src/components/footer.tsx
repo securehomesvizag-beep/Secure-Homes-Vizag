@@ -42,23 +42,28 @@ export function Footer({ settings }: FooterProps) {
             </p>
             <ul className="space-y-2 text-sm text-[#E7E0D5]">
               <li>
-                <Link href="/listings?type=plots" className="hover:text-[var(--brand)]">
-                  Plots and Land
+                <Link href="/plots-in-vizag" className="hover:text-[var(--brand)]">
+                  Plots in Vizag
                 </Link>
               </li>
               <li>
-                <Link href="/listings?type=flats" className="hover:text-[var(--brand)]">
-                  Flats and Apartments
+                <Link href="/villas-in-vizag" className="hover:text-[var(--brand)]">
+                  Villas in Vizag
                 </Link>
               </li>
               <li>
-                <Link href="/listings?type=villas" className="hover:text-[var(--brand)]">
-                  Villas and Houses
+                <Link href="/flats-in-vizag" className="hover:text-[var(--brand)]">
+                  Flats in Vizag
                 </Link>
               </li>
               <li>
-                <Link href="/listings?type=commercial" className="hover:text-[var(--brand)]">
-                  Commercial Properties
+                <Link href="/commercial-property-in-vizag" className="hover:text-[var(--brand)]">
+                  Commercial Property
+                </Link>
+              </li>
+              <li>
+                <Link href="/real-estate-in-vizag" className="hover:text-[var(--brand)] font-medium text-[var(--brand)]">
+                  Vizag Real Estate Guide
                 </Link>
               </li>
             </ul>
@@ -131,19 +136,18 @@ export function Footer({ settings }: FooterProps) {
         {/* Localities & High-Intent Search Bar */}
         <div className="py-6 border-b border-[#233355] text-xs text-[#E7E0D5] space-y-2">
           <p className="font-semibold uppercase tracking-wider text-[#FAF7F2]">
-            Top Real Estate Areas in Visakhapatnam (Vizag)
+            Top Real Estate Areas &amp; Corridors in Visakhapatnam (Vizag)
           </p>
           <p className="leading-relaxed">
-            <Link href="/listings?type=plots" className="hover:text-[var(--brand)] underline">Plots in Anandapuram</Link> •{' '}
-            <Link href="/listings?type=flats" className="hover:text-[var(--brand)] underline">Flats in Madhurawada</Link> •{' '}
-            <Link href="/listings?type=villas" className="hover:text-[var(--brand)] underline">Villas in Bheemili</Link> •{' '}
-            <Link href="/listings?type=flats" className="hover:text-[var(--brand)] underline">Apartments in Rushikonda</Link> •{' '}
-            <Link href="/listings?type=flats" className="hover:text-[var(--brand)] underline">Flats in Yendada</Link> •{' '}
-            <Link href="/listings?type=plots" className="hover:text-[var(--brand)] underline">Land in Pendurthi</Link> •{' '}
-            <Link href="/listings?type=commercial" className="hover:text-[var(--brand)] underline">Commercial in Gajuwaka</Link> •{' '}
-            <Link href="/listings?type=flats" className="hover:text-[var(--brand)] underline">Properties in MVP Colony</Link> •{' '}
-            <Link href="/listings?type=plots" className="hover:text-[var(--brand)] underline">Plots in Sujatha Nagar</Link> •{' '}
-            <Link href="/listings?type=villas" className="hover:text-[var(--brand)] underline">Coastal Villas on Beach Road</Link>
+            <Link href="/plots-in-anandapuram" className="hover:text-[var(--brand)] underline">Plots in Anandapuram</Link> •{' '}
+            <Link href="/plots-in-bhogapuram" className="hover:text-[var(--brand)] underline">Plots in Bhogapuram Airport Corridor</Link> •{' '}
+            <Link href="/plots-in-madhurawada" className="hover:text-[var(--brand)] underline">Plots in Madhurawada</Link> •{' '}
+            <Link href="/plots-in-bheemili" className="hover:text-[var(--brand)] underline">Plots in Bheemili</Link> •{' '}
+            <Link href="/villas-in-rushikonda" className="hover:text-[var(--brand)] underline">Villas in Rushikonda</Link> •{' '}
+            <Link href="/villas-in-bheemili" className="hover:text-[var(--brand)] underline">Villas in Bheemili Beach Road</Link> •{' '}
+            <Link href="/flats-in-madhurawada" className="hover:text-[var(--brand)] underline">Flats in Madhurawada</Link> •{' '}
+            <Link href="/commercial-property-in-vizag" className="hover:text-[var(--brand)] underline">Commercial in Gajuwaka</Link> •{' '}
+            <Link href="/real-estate-in-vizag" className="hover:text-[var(--brand)] underline">Real Estate in Vizag Guide</Link>
           </p>
         </div>
 

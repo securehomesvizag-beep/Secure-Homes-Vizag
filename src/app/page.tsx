@@ -28,17 +28,24 @@ export const metadata: Metadata = {
     'apartments for sale Visakhapatnam',
     'VMRDA approved plots Vizag',
     'RERA approved flats Visakhapatnam',
+    'Bhogapuram airport land for sale',
+    'plots in Anandapuram Vizag',
+    'villas in Rushikonda Vizag',
+    'flats in Madhurawada Vizag',
+    'coastal villas Bheemili Beach Road',
+    'commercial property in Visakhapatnam',
+    'clear title property Visakhapatnam',
     'nearby real estate Vizag',
     'property near Visakhapatnam',
     'NRI property Vizag',
     'property consultant Vizag',
     'property advisor Vizag',
+    'best property dealer in Vizag',
     'Rajesh Ponnada real estate',
     'Secure Home Vizag',
-    'Anandapuram plots',
-    'Bheemili villas',
-    'Madhurawada flats',
-    'Rushikonda apartments',
+    'Secure Homes Vizag',
+    'VMRDA LP layout verification',
+    'Section 22A cleared land Vizag',
   ],
   alternates: {
     canonical: `${SITE_URL}/`,
@@ -71,29 +78,33 @@ export default async function HomePage() {
 
   const propertyTypes = [
     {
-      title: 'Plots and Land',
+      title: 'Plots and Land in Vizag',
       type: 'plots',
+      href: '/plots-in-vizag',
       description: settings.plots_description || 'Clear title VMRDA & approved residential plots in high-growth corridors like Anandapuram, Bheemili & Madhurawada.',
       image: '/Plots.jpeg',
       heightClass: 'h-64 sm:h-72',
     },
     {
-      title: 'Flats and Apartments',
+      title: 'Flats and Apartments in Vizag',
       type: 'flats',
+      href: '/flats-in-vizag',
       description: settings.flats_description || 'Ready-to-move and under-construction 2 & 3 BHK luxury apartments with approved plans and quality amenities.',
       image: '/Apartments.jpeg',
       heightClass: 'h-80 sm:h-96',
     },
     {
-      title: 'Villas and Houses',
+      title: 'Villas and Houses in Vizag',
       type: 'villas',
+      href: '/villas-in-vizag',
       description: settings.villas_description || 'Independent duplex houses and premium gated community coastal villas with private road access and modern infrastructure.',
       image: '/Villa.jpeg',
       heightClass: 'h-80 sm:h-96',
     },
     {
-      title: 'Commercial Properties',
+      title: 'Commercial Properties in Vizag',
       type: 'commercial',
+      href: '/commercial-property-in-vizag',
       description: settings.commercial_description || 'High-visibility retail shops, prime highway commercial plots, and office spaces with direct road access.',
       image: '/commercial.jpg',
       heightClass: 'h-64 sm:h-72',
@@ -136,7 +147,9 @@ export default async function HomePage() {
                 {settings.hero_heading || 'Verified plots, flats and villas in Visakhapatnam'}
               </h1>
               <p className="text-lg md:text-xl text-[var(--text)] leading-relaxed max-w-xl">
-                {settings.hero_subheading || 'Direct guidance from Rajesh Ponnada with 10+ years of local property advisory and clear paperwork.'}
+                {(settings.hero_subheading || 'Direct guidance from Rajesh Ponnada with 10+ years of local property advisory and clear paperwork.')
+                  .replace(/Direct Owener/gi, 'Direct owner')
+                  .replace(/,\s*clear pricing/gi, '')}
               </p>
               <LeadActionButtons
                 variant="hero"
@@ -188,7 +201,7 @@ export default async function HomePage() {
             {propertyTypes.map((item) => (
               <Link
                 key={item.type}
-                href={`/listings?type=${item.type}`}
+                href={item.href || `/listings?type=${item.type}`}
                 className="group block border border-[var(--line)] bg-[var(--surface)] rounded-[4px] overflow-hidden hover:border-[var(--brand)] transition-colors"
               >
                 <div className={`relative w-full ${item.heightClass} bg-[var(--line)]`}>
