@@ -18,13 +18,13 @@ export function Footer({ settings }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-[#233355]">
           {/* Column 1: Brand and Promise */}
           <div className="space-y-4 md:col-span-1">
-            <div className="bg-[var(--surface)] p-2 inline-block rounded-[4px]">
+            <div className="bg-white p-2.5 inline-block rounded-md shadow-xs">
               <Image
                 src="/brand/logo.jpg"
                 alt="Secure Home Vizag"
-                width={160}
-                height={107}
-                className="h-9 w-auto"
+                width={180}
+                height={137}
+                className="h-12 w-auto object-contain"
               />
             </div>
             <p className="text-sm text-[#E7E0D5] leading-relaxed">

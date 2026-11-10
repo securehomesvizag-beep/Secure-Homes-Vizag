@@ -96,11 +96,11 @@ export function Navbar({ settings }: NavbarProps) {
             <Image
               src="/brand/logo.jpg"
               alt="Secure Home Vizag"
-              width={180}
-              height={120}
+              width={200}
+              height={150}
               priority
               loading="eager"
-              className="h-10 sm:h-11 w-auto"
+              className="h-12 sm:h-14 md:h-15 w-auto object-contain"
             />
           </Link>
 
