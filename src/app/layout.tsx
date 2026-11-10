@@ -266,9 +266,9 @@ export default async function RootLayout({
       url: SITE_URL,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/brand/logo.svg`,
+        url: `${SITE_URL}/brand/logo.jpg`,
         width: 180,
-        height: 45,
+        height: 120,
       },
     },
     about: {
@@ -287,7 +287,7 @@ export default async function RootLayout({
     name: 'Secure Home Vizag',
     legalName: 'Secure Home Vizag',
     url: SITE_URL,
-    logo: `${SITE_URL}/brand/logo.svg`,
+    logo: `${SITE_URL}/brand/logo.jpg`,
     foundingDate: '2014',
     founders: [
       {

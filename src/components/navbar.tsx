@@ -94,10 +94,10 @@ export function Navbar({ settings }: NavbarProps) {
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0" aria-label="Secure Home Vizag Home">
             <Image
-              src="/brand/logo.svg"
+              src="/brand/logo.jpg"
               alt="Secure Home Vizag"
               width={180}
-              height={45}
+              height={120}
               priority
               loading="eager"
               className="h-10 sm:h-11 w-auto"

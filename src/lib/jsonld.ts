@@ -21,9 +21,9 @@ export function getRealEstateAgentJsonLd(settings: SiteSettings, siteUrl: string
     },
     logo: {
       '@type': 'ImageObject',
-      url: `${siteUrl}/brand/logo.svg`,
+      url: `${siteUrl}/brand/logo.jpg`,
       width: 180,
-      height: 45,
+      height: 120,
     },
     description:
       'Secure Home Vizag is a trusted real estate consultancy in Visakhapatnam (Vizag), Andhra Pradesh, offering verified plots, flats, apartments, villas, and commercial properties. Founded by Rajesh Ponnada with 10+ years of transparent property advisory, VMRDA and RERA approved listings, and complete title verification services for homebuyers, families, and NRI clients.',

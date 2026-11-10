@@ -20,10 +20,10 @@ export function Footer({ settings }: FooterProps) {
           <div className="space-y-4 md:col-span-1">
             <div className="bg-[var(--surface)] p-2 inline-block rounded-[4px]">
               <Image
-                src="/brand/logo.svg"
+                src="/brand/logo.jpg"
                 alt="Secure Home Vizag"
                 width={160}
-                height={40}
+                height={107}
                 className="h-9 w-auto"
               />
             </div>
