@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: ListingPageProps): Promise<Me
 
   const ogImages = listing.cover_image_url
     ? [{ url: listing.cover_image_url, width: 1200, height: 630, alt: listing.title }]
-    : [{ url: '/brand/og-image.jpg', width: 1200, height: 630 }];
+    : [{ url: '/brand/og-image-v2.jpg', width: 1200, height: 630 }];
 
   return {
     title: `${listing.title} in ${listing.location} | Secure Home Vizag`,

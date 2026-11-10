@@ -50,7 +50,7 @@ export const metadata: Metadata = {
       'Verified VMRDA plots, luxury coastal villas, and modern apartments across Visakhapatnam. Ground valuation rates, legal checks, and advisory from Rajesh Ponnada.',
     url: `${SITE_URL}/real-estate-in-vizag`,
     type: 'article',
-    images: [{ url: '/brand/og-image.jpg', width: 1200, height: 630, alt: 'Real Estate in Vizag' }],
+    images: [{ url: '/brand/og-image-v2.jpg', width: 1200, height: 630, alt: 'Real Estate in Vizag' }],
   },
 };
 

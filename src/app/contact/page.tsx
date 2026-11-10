@@ -30,7 +30,7 @@ export const metadata: Metadata = {
       'Reach Rajesh Ponnada directly for property enquiries, site visits, and title checks across Visakhapatnam. Call, WhatsApp, or submit an online enquiry.',
     url: `${SITE_URL}/contact`,
     type: 'website',
-    images: [{ url: '/brand/og-image.jpg', width: 1200, height: 630, alt: 'Contact Secure Home Vizag' }],
+    images: [{ url: '/brand/og-image-v2.jpg', width: 1200, height: 630, alt: 'Contact Secure Home Vizag' }],
   },
 };
 

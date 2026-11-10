@@ -92,18 +92,16 @@ export function Navbar({ settings }: NavbarProps) {
       <header className="sticky top-0 z-40 bg-[var(--bg)] border-b border-[var(--line)]">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-18 flex items-center justify-between gap-4">
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0" aria-label="Secure Home Vizag Home">
-            <div className="bg-[#0b1329] px-3 py-1.5 rounded-lg border border-[#1e293b] shadow-xs flex items-center">
-              <Image
-                src="/brand/logo.png"
-                alt="Secure Home Vizag"
-                width={200}
-                height={55}
-                priority
-                loading="eager"
-                className="h-9 sm:h-10 md:h-11 w-auto object-contain"
-              />
-            </div>
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0 py-1" aria-label="Secure Home Vizag Home">
+            <Image
+              src="/brand/logo-header-v2.png"
+              alt="Secure Home Vizag"
+              width={200}
+              height={55}
+              priority
+              loading="eager"
+              className="h-10 sm:h-11 md:h-12 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       'Watch unedited site walk-throughs, coastal layout drone views, and direct property commentary from Rajesh Ponnada in Visakhapatnam.',
     url: `${SITE_URL}/social`,
     type: 'website',
-    images: [{ url: '/brand/og-image.jpg', width: 1200, height: 630 }],
+    images: [{ url: '/brand/og-image-v2.jpg', width: 1200, height: 630 }],
   },
   // Social media discovery pages — index but not high priority
   robots: { index: true, follow: true },

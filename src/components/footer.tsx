@@ -18,15 +18,15 @@ export function Footer({ settings }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-[#233355]">
           {/* Column 1: Brand and Promise */}
           <div className="space-y-4 md:col-span-1">
-            <div className="bg-[#0b1329] p-3 inline-block rounded-lg border border-[#1e293b] shadow-xs">
+            <Link href="/" className="inline-block py-1" aria-label="Secure Home Vizag Home">
               <Image
-                src="/brand/logo.png"
+                src="/brand/logo-footer.png"
                 alt="Secure Home Vizag"
-                width={190}
-                height={52}
-                className="h-10 w-auto object-contain"
+                width={200}
+                height={55}
+                className="h-10 sm:h-11 w-auto object-contain"
               />
-            </div>
+            </Link>
             <p className="text-sm text-[#E7E0D5] leading-relaxed">
               Transparent and Reliable real estate consultancy in Visakhapatnam. 10+ years of local property advisory.
             </p>

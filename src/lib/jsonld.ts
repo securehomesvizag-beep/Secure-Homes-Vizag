@@ -15,7 +15,7 @@ export function getRealEstateAgentJsonLd(settings: SiteSettings, siteUrl: string
     legalName: 'Secure Home Vizag (Proprietor: Rajesh Ponnada)',
     image: {
       '@type': 'ImageObject',
-      url: `${siteUrl}/brand/og-image.jpg`,
+      url: `${siteUrl}/brand/og-image-v2.jpg`,
       width: 1200,
       height: 630,
     },

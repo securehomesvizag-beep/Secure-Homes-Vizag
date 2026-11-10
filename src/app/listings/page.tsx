@@ -237,7 +237,7 @@ export async function generateMetadata({
       type: 'website',
       images: [
         {
-          url: '/brand/og-image.jpg',
+          url: '/brand/og-image-v2.jpg',
           width: 1200,
           height: 630,
           alt: `${meta.h1} — Secure Home Vizag`,
@@ -248,7 +248,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: meta.title,
       description: meta.description,
-      images: ['/brand/og-image.jpg'],
+      images: ['/brand/og-image-v2.jpg'],
     },
     robots: {
       index: true,

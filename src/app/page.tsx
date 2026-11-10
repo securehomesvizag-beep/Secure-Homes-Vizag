@@ -56,13 +56,30 @@ export const metadata: Metadata = {
       'Visakhapatnam\'s trusted real estate consultancy. Browse VMRDA & RERA approved plots, flats, villas and commercial properties across Vizag. 10+ years of transparent advisory from Rajesh Ponnada.',
     url: `${SITE_URL}/`,
     type: 'website',
-    images: [{ url: '/brand/og-image.jpg', width: 1200, height: 630, alt: 'Secure Home Vizag — Verified Properties in Visakhapatnam' }],
+    images: [
+      {
+        url: `${SITE_URL}/brand/og-image-v2.jpg`,
+        secureUrl: `${SITE_URL}/brand/og-image-v2.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Secure Home Vizag — Verified Properties in Visakhapatnam',
+        type: 'image/jpeg',
+      },
+      {
+        url: `${SITE_URL}/brand/og-square-v2.jpg`,
+        secureUrl: `${SITE_URL}/brand/og-square-v2.jpg`,
+        width: 600,
+        height: 600,
+        alt: 'Secure Home Vizag',
+        type: 'image/jpeg',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Real Estate in Vizag | Secure Home Vizag',
     description: 'Find VMRDA & RERA approved plots, flats, villas in Visakhapatnam. Trusted property advisor with 10+ years of experience.',
-    images: ['/brand/og-image.jpg'],
+    images: [`${SITE_URL}/brand/og-image-v2.jpg`],
   },
 };
 

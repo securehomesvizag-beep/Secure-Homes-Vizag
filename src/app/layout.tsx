@@ -153,10 +153,19 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/brand/og-image.jpg',
+        url: `${SITE_URL}/brand/og-image-v2.jpg`,
+        secureUrl: `${SITE_URL}/brand/og-image-v2.jpg`,
         width: 1200,
         height: 630,
         alt: 'Secure Home Vizag — Verified Plots, Flats & Villas in Visakhapatnam',
+        type: 'image/jpeg',
+      },
+      {
+        url: `${SITE_URL}/brand/og-square-v2.jpg`,
+        secureUrl: `${SITE_URL}/brand/og-square-v2.jpg`,
+        width: 600,
+        height: 600,
+        alt: 'Secure Home Vizag',
         type: 'image/jpeg',
       },
     ],
@@ -166,7 +175,7 @@ export const metadata: Metadata = {
     title: 'Secure Home Vizag | Verified Property in Visakhapatnam',
     description:
       'Browse VMRDA & RERA approved plots, flats, villas and commercial properties in Vizag. Direct guidance from Rajesh Ponnada — 10+ years of transparent real estate advisory.',
-    images: ['/brand/og-image.jpg'],
+    images: [`${SITE_URL}/brand/og-image-v2.jpg`],
     creator: '@securehomevizag',
     site: '@securehomevizag',
   },
