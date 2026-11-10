@@ -93,15 +93,17 @@ export function Navbar({ settings }: NavbarProps) {
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-18 flex items-center justify-between gap-4">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0" aria-label="Secure Home Vizag Home">
-            <Image
-              src="/brand/logo.jpg"
-              alt="Secure Home Vizag"
-              width={200}
-              height={150}
-              priority
-              loading="eager"
-              className="h-12 sm:h-14 md:h-15 w-auto object-contain"
-            />
+            <div className="bg-[#0b1329] px-3 py-1.5 rounded-lg border border-[#1e293b] shadow-xs flex items-center">
+              <Image
+                src="/brand/logo.png"
+                alt="Secure Home Vizag"
+                width={200}
+                height={55}
+                priority
+                loading="eager"
+                className="h-9 sm:h-10 md:h-11 w-auto object-contain"
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
